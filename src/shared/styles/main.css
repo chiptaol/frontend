@@ -6,6 +6,16 @@ html,
 body,
 #__next {
   height: 100%;
+}
+
+body {
+  background-color: #35374d;
+}
+
+#__next {
+  max-width: 640px;
+  width: 100%;
+  margin: 0 auto;
   background-color: #1e1f29;
   color: white;
 }
@@ -13,4 +23,12 @@ body,
 .swiper {
   height: max-content;
   width: 100%;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }

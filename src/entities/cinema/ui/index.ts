@@ -1,0 +1,1 @@
+export { CinemaSeat } from './seat'

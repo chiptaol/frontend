@@ -1,1 +1,1 @@
-export { PremieresSlider } from './ui'
+export * from './ui'
