@@ -3,6 +3,14 @@ const nextConfig = {
   pageExtensions: ['page.tsx', 'api.ts'],
   reactStrictMode: true,
   swcMinify: true,
+  env: {
+    SERVER_DOMAIN: process.env.SERVER_DOMAIN,
+    SERVER_STORAGE_DOMAIN: process.env.SERVER_STORAGE_DOMAIN,
+    SERVER_HOSTNAME: process.env.SERVER_HOSTNAME,
+  },
+  images: {
+    domains: [process.env.SERVER_HOSTNAME],
+  },
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/i,

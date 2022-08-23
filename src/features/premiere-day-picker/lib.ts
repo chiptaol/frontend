@@ -2,33 +2,36 @@ import dayjs, { Dayjs } from 'dayjs'
 
 import { SERVER_DATE_FORMAT } from '~shared/config'
 
+export type DayFilterItem = {
+  dayOrDate: string
+  weekDay: string
+  formatted: string
+}
+
 function isWhichDay(date: Dayjs) {
   const today = dayjs()
 
-  if (today.isSame(date.format('YYYY-MM-DD'), 'day')) {
+  if (today.isSame(date.format(SERVER_DATE_FORMAT), 'day')) {
     return 'сегодня'
   }
-  if (today.isSame(date.subtract(1, 'day').format('YYYY-MM-DD'), 'day')) {
+  if (today.isSame(date.subtract(1, 'day').format(SERVER_DATE_FORMAT), 'day')) {
     return 'завтра'
   }
-  if (today.isSame(date.subtract(2, 'day').format('YYYY-MM-DD'), 'day')) {
+  if (today.isSame(date.subtract(2, 'day').format(SERVER_DATE_FORMAT), 'day')) {
     return 'послезавтра'
   }
 
   return null
 }
 
-export function generateFiveDaysAhead() {
-  const days = [dayjs()]
-  for (let i = 0; i < 4; i++) {
-    const prevDateObject = days[i]
-    const current = prevDateObject.add(1, 'day')
-    days.push(current)
-  }
+export function normalizeDateArray(dates: string[]): DayFilterItem[] {
+  return dates.map((date) => {
+    const dayjsObject = dayjs(date)
 
-  return days.map((day) => ({
-    day: day.format('dd'),
-    whichDay: isWhichDay(day) ?? day.format('DD'),
-    formatted: day.format(SERVER_DATE_FORMAT),
-  }))
+    return {
+      dayOrDate: isWhichDay(dayjsObject) ?? dayjsObject.format('DD'),
+      weekDay: dayjsObject.format('dd'),
+      formatted: date,
+    }
+  })
 }

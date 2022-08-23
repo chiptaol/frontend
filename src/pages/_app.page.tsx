@@ -2,6 +2,7 @@ import { fork, serialize } from 'effector'
 import { Provider } from 'effector-react/scope'
 import dayjs from 'dayjs'
 import ru from 'dayjs/locale/ru'
+import customParseFormat from 'dayjs/plugin/customParseFormat'
 import type { ReactElement } from 'react'
 import type { Scope } from 'effector'
 
@@ -14,6 +15,7 @@ import '~shared/styles/main.css'
 import '~shared/styles/font.css'
 
 dayjs.locale(ru)
+dayjs.extend(customParseFormat)
 
 let clientScope: Scope
 
@@ -26,7 +28,6 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   })
 
   if (typeof window === 'undefined') clientScope = scope
-  console.log('scope', serialize(scope))
 
   const getLayout = Component.getLayout ?? getDefaultLayout
 

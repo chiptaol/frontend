@@ -1,1 +1,0 @@
-export { PremieresSlider } from './ui'

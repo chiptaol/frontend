@@ -1,9 +1,42 @@
-import type { NextPage } from 'next'
 import Head from 'next/head'
+import {
+  allSettled,
+  fork,
+  serialize,
+  attach,
+  createEvent,
+  sample,
+} from 'effector'
+import { useList } from 'effector-react'
+import dayjs from 'dayjs'
+import type { GetServerSideProps, NextPage } from 'next'
 
-import { PremiereDayPicker } from '~features/premiere-day-picker'
-import { CinemaSeat } from '~entities/cinema'
-import { PremieresSlider } from '~entities/seance'
+import {
+  PremiereDayPicker,
+  premiereDayPickerModel,
+} from '~features/premiere-day-picker'
+import { premiere, PremiereCard, PremieresSlider } from '~entities/premiere'
+import { SERVER_DATE_FORMAT } from '~shared/config'
+import Link from 'next/link'
+import { routesMap } from '~shared/routes'
+
+const pageStarted = createEvent()
+
+const fetchPremieresFx = attach({
+  effect: premiere.model.fetchPremieresFx,
+  source: premiereDayPickerModel.$selectedDay,
+  mapParams: (_: void, date) => ({ date }),
+})
+
+sample({
+  clock: pageStarted,
+  target: [premiere.model.fetchActualPremieresFx, fetchPremieresFx],
+})
+
+sample({
+  source: premiereDayPickerModel.$selectedDay,
+  target: fetchPremieresFx,
+})
 
 const Home: NextPage = () => {
   return (
@@ -26,12 +59,54 @@ const Home: NextPage = () => {
           </h1>
           <div className="flex flex-col space-y-6 w-full">
             <PremiereDayPicker />
-            <CinemaSeat />
+            <PremieresList />
           </div>
         </div>
       </div>
     </>
   )
+}
+
+const PremieresList = () => {
+  const premieres = useList(premiere.model.$premieres, (premiere) => (
+    <Link href={routesMap.premiere(premiere.id)}>
+      <a>
+        <PremiereCard key={premiere.id} premiere={premiere} />
+      </a>
+    </Link>
+  ))
+
+  return (
+    <div className="grid grid-cols-3 gap-3 xs:gap-4 sm:grid-cols-4 sm:gap-5 pr-4">
+      {premieres}
+    </div>
+  )
+}
+
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  const isDateValid = checkDate(ctx.query.date)
+
+  const scope = fork({
+    values: [
+      [
+        premiereDayPickerModel.$selectedDay,
+        isDateValid ? ctx.query.date : premiereDayPickerModel.TODAY,
+      ],
+    ],
+  })
+
+  await allSettled(pageStarted, { scope })
+
+  return {
+    props: {
+      initialState: serialize(scope),
+    },
+  }
+}
+
+function checkDate(date: string | string[] | undefined) {
+  if (typeof date !== 'string') return false
+  return dayjs(date, SERVER_DATE_FORMAT, true).isValid()
 }
 
 export default Home

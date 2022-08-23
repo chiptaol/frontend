@@ -4,11 +4,11 @@ import { useList, useStoreMap, useUnit } from 'effector-react'
 import * as model from './model'
 
 export const PremiereDayPicker = () => {
-  const days = useList(model.$days, ({ day, whichDay, formatted }) => (
+  const days = useList(model.$days, ({ dayOrDate, weekDay, formatted }) => (
     <DayPickerItem
-      key={whichDay}
-      date={whichDay}
-      day={day}
+      key={weekDay}
+      dayOrDate={dayOrDate}
+      weekDay={weekDay}
       formatted={formatted}
     />
   ))
@@ -20,8 +20,8 @@ export const PremiereDayPicker = () => {
 }
 
 type DayPickerItemProps = {
-  date: string
-  day: string
+  dayOrDate: string
+  weekDay: string
   formatted: string
 }
 
@@ -44,9 +44,11 @@ const DayPickerItem = (props: DayPickerItemProps) => {
       )}
     >
       <span className={cn('text-sm leading-4 font-semibold')}>
-        {props.date}
+        {props.dayOrDate}
       </span>
-      <span className={cn('text-sm leading-4 text-gray-300')}>{props.day}</span>
+      <span className={cn('text-sm leading-4 text-gray-300')}>
+        {props.weekDay}
+      </span>
     </button>
   )
 }
