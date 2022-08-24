@@ -10,3 +10,8 @@ export const fetchPremieresRequestOk = typed.obj({
   schedule: typed.arr(typed.str),
   premieres: typed.arr(entity.premiere),
 })
+
+export const fetchMovieRequestOk = typed.obj({
+  data: entity.movie,
+})
+export const fetchMovieRequestNotFound = typed.nul

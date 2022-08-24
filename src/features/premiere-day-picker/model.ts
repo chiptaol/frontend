@@ -1,5 +1,4 @@
 import { createEvent, createStore } from 'effector'
-import { persist, replaceState } from 'effector-storage/query'
 import dayjs from 'dayjs'
 
 import { premiere } from '~entities/premiere'
@@ -18,9 +17,3 @@ $days.on(premiere.model.fetchPremieresFx.doneData, (_, { answer }) =>
   lib.normalizeDateArray([...answer.schedule])
 )
 $selectedDay.on(daySelected, (_, selected) => selected)
-
-persist({
-  store: $selectedDay,
-  key: 'date',
-  method: replaceState,
-})

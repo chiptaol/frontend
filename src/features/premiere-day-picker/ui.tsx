@@ -12,6 +12,7 @@ export const PremiereDayPicker = () => {
       formatted={formatted}
     />
   ))
+
   return (
     <div className="flex items-center space-x-2 w-full overflow-x-auto pr-2 hide-scrollbar">
       {days}

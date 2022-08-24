@@ -9,6 +9,7 @@ import {
 } from 'effector'
 import { useList } from 'effector-react'
 import dayjs from 'dayjs'
+import Link from 'next/link'
 import type { GetServerSideProps, NextPage } from 'next'
 
 import {
@@ -17,26 +18,7 @@ import {
 } from '~features/premiere-day-picker'
 import { premiere, PremiereCard, PremieresSlider } from '~entities/premiere'
 import { SERVER_DATE_FORMAT } from '~shared/config'
-import Link from 'next/link'
 import { routesMap } from '~shared/routes'
-
-const pageStarted = createEvent()
-
-const fetchPremieresFx = attach({
-  effect: premiere.model.fetchPremieresFx,
-  source: premiereDayPickerModel.$selectedDay,
-  mapParams: (_: void, date) => ({ date }),
-})
-
-sample({
-  clock: pageStarted,
-  target: [premiere.model.fetchActualPremieresFx, fetchPremieresFx],
-})
-
-sample({
-  source: premiereDayPickerModel.$selectedDay,
-  target: fetchPremieresFx,
-})
 
 const Home: NextPage = () => {
   return (
@@ -54,9 +36,7 @@ const Home: NextPage = () => {
           <PremieresSlider />
         </div>
         <div className="flex flex-col w-full pl-4 space-y-4">
-          <h1 className="text-2xl leading-7 font-extrabold pl-4">
-            В кинотеатрах
-          </h1>
+          <h1 className="text-2xl leading-7 font-extrabold">В кинотеатрах</h1>
           <div className="flex flex-col space-y-6 w-full">
             <PremiereDayPicker />
             <PremieresList />
@@ -83,17 +63,26 @@ const PremieresList = () => {
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const isDateValid = checkDate(ctx.query.date)
+const pageStarted = createEvent()
 
-  const scope = fork({
-    values: [
-      [
-        premiereDayPickerModel.$selectedDay,
-        isDateValid ? ctx.query.date : premiereDayPickerModel.TODAY,
-      ],
-    ],
-  })
+const fetchPremieresFx = attach({
+  effect: premiere.model.fetchPremieresFx,
+  source: premiereDayPickerModel.$selectedDay,
+  mapParams: (_: void, date) => ({ date }),
+})
+
+sample({
+  clock: pageStarted,
+  target: [premiere.model.fetchActualPremieresFx, fetchPremieresFx],
+})
+
+sample({
+  source: premiereDayPickerModel.$selectedDay,
+  target: fetchPremieresFx,
+})
+
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  const scope = fork()
 
   await allSettled(pageStarted, { scope })
 

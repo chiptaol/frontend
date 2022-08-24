@@ -33,3 +33,18 @@ export type FetchPremieresRequestDone = {
   answer: typed.Get<typeof contract.fetchPremieresRequestOk>
 }
 export type FetchPremieresRequestFail = GenericErrors
+
+export type FetchMovieRequest = {
+  id: number
+}
+export type FetchMovieRequestDone = {
+  status: 'ok'
+  answer: typed.Get<typeof contract.fetchMovieRequestOk>
+}
+export type FetchMovieRequestNotFound = {
+  status: 'not_found'
+  error: typed.Get<typeof contract.fetchMovieRequestNotFound>
+}
+export type FetchMovieRequestFail = FetchMovieRequestNotFound | GenericErrors
+
+export type Movie = typed.Get<typeof contract.movie>

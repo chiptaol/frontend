@@ -16,7 +16,6 @@ export const fetchActualPremieresRequestFx = createEffect<
       path: 'premieres/actual',
       method: 'GET',
     })
-    console.log(name)
 
     return parseByStatus(name, response, {
       200: ['ok', contract.fetchActualPremieresRequestOk],
@@ -38,6 +37,25 @@ export const fetchPremieresRequestFx = createEffect<
 
     return parseByStatus(name, response, {
       200: ['ok', contract.fetchPremieresRequestOk],
+    })
+  },
+})
+
+export const fetchMovieRequestFx = createEffect<
+  types.FetchMovieRequest,
+  types.FetchMovieRequestDone,
+  types.FetchMovieRequestFail
+>({
+  async handler({ id }) {
+    const name = 'fetchMovieRequestFx.body'
+    const response = await authenticatedRequestFx({
+      path: `premieres/${id}/movie`,
+      method: 'GET',
+    })
+
+    return parseByStatus(name, response, {
+      200: ['ok', contract.fetchMovieRequestOk],
+      404: ['not_found', contract.fetchMovieRequestNotFound],
     })
   },
 })
