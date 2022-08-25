@@ -1,4 +1,5 @@
 import * as typed from 'typed-contracts'
+
 import { contract } from './contract'
 
 export type GenericErrors =
@@ -59,4 +60,15 @@ export type FetchSeancesRequestDone = {
 }
 export type FetchSeancesRequestFail = GenericErrors
 
-export type Seance = typed.Get<typeof contract.premiereSeance>
+export type PremiereSeance = typed.Get<typeof contract.premiereSeance>
+
+export type Seance = typed.Get<typeof contract.seance>
+
+export type FetchSeanceRequest = {
+  id: number
+}
+export type FetchSeanceRequestDone = {
+  status: 'ok'
+  answer: typed.Get<typeof contract.fetchSeanceRequestOk>
+}
+export type FetchSeanceRequestFail = GenericErrors

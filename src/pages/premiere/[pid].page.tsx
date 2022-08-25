@@ -12,7 +12,7 @@ import type { NextPageWithLayout } from '~shared/next'
 const PremierePage: NextPageWithLayout = () => {
   return (
     <div className="flex flex-col w-full h-full overflow-y-auto">
-      <Header />
+      <Helmet />
       <main className="flex-grow">
         <MovieOverview />
         <MovieTabs />
@@ -22,7 +22,7 @@ const PremierePage: NextPageWithLayout = () => {
   )
 }
 
-const Header = () => {
+const Helmet = () => {
   const movieName = useStoreMap(
     movie.model.$movie,
     (movie) => movie?.title ?? null
@@ -55,7 +55,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
   await allSettled(pageStarted, { scope, params: { id: +ctx.params!.pid! } })
 
-  if (!scope.getState(movie.model.$movie)) {
+  if (scope.getState(movie.model.$movie) === null) {
     return {
       notFound: true,
     }

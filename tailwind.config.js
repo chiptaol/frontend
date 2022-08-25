@@ -30,6 +30,9 @@ module.exports = {
         violet: {
           100: '#817F95',
         },
+        blue: {
+          100: '#6776DE',
+        },
       },
     },
   },

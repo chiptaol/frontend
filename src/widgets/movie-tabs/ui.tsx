@@ -4,15 +4,11 @@ import { useRouter } from 'next/router'
 import { Tab } from '@headlessui/react'
 import cn from 'classnames'
 
+import { SeanceDayPicker } from '~features/seance'
 import { MovieDetails } from '~entities/movie'
+import { seance, SeanceCinemaListItem } from '~entities/seance'
 
 import * as model from './model'
-import { SeanceDayPicker } from '~features/seance'
-import {
-  seance,
-  SeanceCinemaListItem,
-  SeanceHallListItem,
-} from '~entities/seance'
 
 export const MovieTabs = () => {
   const mounted = useUnit(model.mounted)
@@ -44,7 +40,7 @@ export const MovieTabs = () => {
 }
 
 const SeancesList = () => {
-  const seances = useList(seance.model.$seances, (seance) => (
+  const seances = useList(seance.model.$premiereSeances, (seance) => (
     <SeanceCinemaListItem key={seance.id} seancesGroup={seance} />
   ))
 

@@ -4,13 +4,15 @@ import { request } from '~shared/api'
 import { stringifyParams } from '~shared/lib/stringify-params'
 import { types } from '~shared/types'
 
-type FetchSeancesParams = {
+type FetchPremiereSeancesParams = {
   date: string | null
 } & Omit<types.FetchSeancesRequest, 'query'>
 
-export const fetchSeancesFx = attach({
+type SeanceOverall = types.FetchSeanceRequestDone['answer']['data']
+
+export const fetchPremiereSeancesFx = attach({
   effect: request.fetchSeancesRequestFx,
-  mapParams: ({ id, ...params }: FetchSeancesParams) => ({
+  mapParams: ({ id, ...params }: FetchPremiereSeancesParams) => ({
     id,
     query: stringifyParams({
       params,
@@ -18,7 +20,12 @@ export const fetchSeancesFx = attach({
     }),
   }),
 })
+export const fetchSeanceFx = attach({ effect: request.fetchSeanceRequestFx })
 
-export const $seances = createStore<types.Seance[]>([])
+export const $premiereSeances = createStore<types.PremiereSeance[]>([])
+export const $seance = createStore<SeanceOverall | null>(null)
 
-$seances.on(fetchSeancesFx.doneData, (_, { answer }) => [...answer.data])
+$premiereSeances.on(fetchPremiereSeancesFx.doneData, (_, { answer }) => [
+  ...answer.data,
+])
+$seance.on(fetchSeanceFx.doneData, (_, { answer }) => answer.data)

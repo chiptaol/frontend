@@ -1,11 +1,12 @@
 import Link from 'next/link'
+
 import { convertToSum } from '~shared/lib/convert-to-sum'
 import { formatDate } from '~shared/lib/format-date'
 import { routesMap } from '~shared/routes'
 import { types } from '~shared/types'
 
 type Props = {
-  seance: types.Seance['halls'][number]
+  seance: types.PremiereSeance['halls'][number]
 }
 
 export const SeanceHallListItem = (props: Props) => {

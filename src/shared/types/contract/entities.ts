@@ -53,3 +53,27 @@ export const premiereSeance = typed.obj({
     })
   ),
 })
+
+export const seanceSeat = typed.obj({
+  id: typed.num,
+  is_available: typed.bool,
+  is_vip: typed.bool,
+  row: typed.num,
+  place: typed.num,
+  x: typed.num,
+  y: typed.num,
+  price: typed.num,
+})
+
+export const seance = typed.obj({
+  id: typed.num,
+  format: typed.str,
+  prices: typed.obj({
+    vip: typed.num.maybe,
+    standard: typed.num.maybe,
+  }),
+  start_date_time: typed.str,
+  seats_left: typed.num,
+  movie_id: typed.num,
+  seats: typed.arr(seanceSeat),
+})

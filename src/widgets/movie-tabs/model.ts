@@ -6,7 +6,7 @@ import { seance } from '~entities/seance'
 export const mounted = createEvent<number>()
 
 const fetchSeancesFx = attach({
-  effect: seance.model.fetchSeancesFx,
+  effect: seance.model.fetchPremiereSeancesFx,
 })
 
 sample({

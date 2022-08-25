@@ -11,14 +11,17 @@ export const daySelected = createEvent<string>()
 export const $days = createStore<lib.DayFilterItem[]>([])
 export const $selectedDay = createStore<string | null>(null)
 
-$days.on(seance.model.fetchSeancesFx.doneData, (_, { answer }) =>
+$days.on(seance.model.fetchPremiereSeancesFx.doneData, (_, { answer }) =>
   lib.normalizeDateArray([...answer.schedule])
 )
 $selectedDay
   .on(daySelected, (_, selected) => selected)
-  .on(seance.model.fetchSeancesFx.done, (selected, { params, result }) => {
-    if (!params.date) return result.answer.schedule[0] ?? null
-    if (selected !== params.date) return params.date
+  .on(
+    seance.model.fetchPremiereSeancesFx.done,
+    (selected, { params, result }) => {
+      if (!params.date) return result.answer.schedule[0] ?? null
+      if (selected !== params.date) return params.date
 
-    return selected
-  })
+      return selected
+    }
+  )

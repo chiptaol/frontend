@@ -8,7 +8,7 @@ import { ShowOnly } from '~shared/ui'
 import { SeanceHallListItem } from './hall-list-item'
 
 type Props = {
-  seancesGroup: types.Seance
+  seancesGroup: types.PremiereSeance
 }
 
 export const SeanceCinemaListItem = (props: Props) => {
@@ -42,7 +42,7 @@ export const SeanceCinemaListItem = (props: Props) => {
   )
 }
 
-function sliceSeancesIntoTwoPart(seances: types.Seance['halls']) {
+function sliceSeancesIntoTwoPart(seances: types.PremiereSeance['halls']) {
   const firstPart = seances.slice(0, 3)
   const secondPart = seances.slice(3)
 
