@@ -18,6 +18,11 @@ export const MovieCard = () => {
         <Poster posterPath={movie.poster_path ?? null} />
       </div>
       <div className="flex flex-col space-y-2 z-20">
+        <ShowOnly when={!!movie.is_premiere}>
+          <h3 className="text-xs leading-3 font-semibold text-yellow-500">
+            Премьера
+          </h3>
+        </ShowOnly>
         <ShowOnly when={!!movie.original_title}>
           <h4 className="text-sm leading-4 font-semibold text-gray-400">
             {movie.original_title!}
@@ -30,7 +35,7 @@ export const MovieCard = () => {
           <div className="flex items-center space-x-1">
             <StarIcon />
             <span className="text-[10px] font-medium leading-[1]">
-              {movie.rating!}
+              {movie.rating!.toFixed(1)}
             </span>
           </div>
         </ShowOnly>

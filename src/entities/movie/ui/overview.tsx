@@ -10,7 +10,7 @@ import * as model from '../model'
 
 export const MovieOverview = () => {
   return (
-    <div className="relative">
+    <div className="relative mb-8">
       <PageBackButton
         className="absolute z-20 top-3 left-2"
         href={routesMap.home}

@@ -2,25 +2,23 @@ import { allSettled, createEvent, fork, sample, serialize } from 'effector'
 import { useStoreMap } from 'effector-react'
 import { useMemo } from 'react'
 import Head from 'next/head'
-import Link from 'next/link'
 import type { GetServerSideProps } from 'next'
 
+import { MovieTabs } from '~widgets/movie-tabs'
 import { movie, MovieOverview } from '~entities/movie'
-import { routesMap } from '~shared/routes'
+import { FooterInfo } from '~shared/ui'
 import type { NextPageWithLayout } from '~shared/next'
 
 const PremierePage: NextPageWithLayout = () => {
   return (
-    <>
+    <div className="flex flex-col w-full h-full overflow-y-auto">
       <Header />
-      <div className="w-full">
+      <main className="flex-grow">
         <MovieOverview />
-        <br />
-        <Link href={routesMap.seance(25)}>
-          <a>to seance page</a>
-        </Link>
-      </div>
-    </>
+        <MovieTabs />
+      </main>
+      <FooterInfo />
+    </div>
   )
 }
 
@@ -44,8 +42,6 @@ const Header = () => {
     </Head>
   )
 }
-
-const Movie = () => {}
 
 const pageStarted = createEvent<{ id: number }>()
 
