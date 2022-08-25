@@ -14,7 +14,7 @@ export const MovieCard = () => {
 
   return (
     <div className="flex items-end space-x-5">
-      <div className="rounded-xl h-44 w-32 overflow-hidden relative">
+      <div className="rounded-xl h-44 w-32 overflow-hidden relative flex-shrink-0">
         <Poster posterPath={movie.poster_path ?? null} />
       </div>
       <div className="flex flex-col space-y-2 z-20">

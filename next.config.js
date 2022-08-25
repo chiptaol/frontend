@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   pageExtensions: ['page.tsx', 'api.ts'],
-  reactStrictMode: true,
+  reactStrictMode: false,
   swcMinify: true,
   env: {
     SERVER_DOMAIN: process.env.SERVER_DOMAIN,

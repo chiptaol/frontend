@@ -15,7 +15,7 @@ export const MovieOverview = () => {
         className="absolute z-20 top-3 left-2"
         href={routesMap.home}
       />
-      <div className="relative h-52">
+      <div className="relative h-52 xs:h-64">
         <div className="absolute inset-0 bg-header z-10" />
         <Backdrop />
       </div>
@@ -36,7 +36,7 @@ const Backdrop = () => {
     <ShowOnly when={!!movieBackdropPath}>
       <Image
         layout="fill"
-        className="object-cover object-center inset-0 absolute"
+        className="object-cover object-top inset-0 absolute"
         src={imageSrc(movieBackdropPath!)}
         alt=""
       />

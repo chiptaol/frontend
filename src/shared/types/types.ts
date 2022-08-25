@@ -48,3 +48,15 @@ export type FetchMovieRequestNotFound = {
 export type FetchMovieRequestFail = FetchMovieRequestNotFound | GenericErrors
 
 export type Movie = typed.Get<typeof contract.movie>
+
+export type FetchSeancesRequest = {
+  id: number
+  query: string
+}
+export type FetchSeancesRequestDone = {
+  status: 'ok'
+  answer: typed.Get<typeof contract.fetchSeancesRequestOk>
+}
+export type FetchSeancesRequestFail = GenericErrors
+
+export type Seance = typed.Get<typeof contract.premiereSeance>

@@ -15,3 +15,8 @@ export const fetchMovieRequestOk = typed.obj({
   data: entity.movie,
 })
 export const fetchMovieRequestNotFound = typed.nul
+
+export const fetchSeancesRequestOk = typed.obj({
+  data: typed.arr(entity.premiereSeance),
+  schedule: typed.arr(typed.str),
+})

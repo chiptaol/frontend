@@ -33,3 +33,23 @@ export const movie = typed.obj({
   countries: typed.arr(typed.obj({ name: typed.str.maybe })),
   genres: typed.arr(typed.str),
 })
+
+export const premiereSeance = typed.obj({
+  id: typed.num,
+  title: typed.str,
+  halls: typed.arr(
+    typed.obj({
+      id: typed.num,
+      title: typed.str,
+      is_vip: typed.bool,
+      formats: typed.arr(typed.str),
+      cheapest_price: typed.num,
+      seances: typed.arr(
+        typed.obj({
+          id: typed.num,
+          start_date_time: typed.str,
+        })
+      ),
+    })
+  ),
+})

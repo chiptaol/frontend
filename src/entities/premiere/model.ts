@@ -5,7 +5,7 @@ import { stringifyParams } from '~shared/lib/stringify-params'
 import { types } from '~shared/types'
 
 type FetchPremieresRequestParams = {
-  date?: string
+  date: string | null
 }
 
 export const $actualPremieres = createStore<types.ActualPremiere[]>([])

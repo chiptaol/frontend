@@ -8,7 +8,6 @@ import {
   sample,
 } from 'effector'
 import { useList } from 'effector-react'
-import dayjs from 'dayjs'
 import Link from 'next/link'
 import type { GetServerSideProps, NextPage } from 'next'
 
@@ -17,7 +16,6 @@ import {
   premiereDayPickerModel,
 } from '~features/premiere-day-picker'
 import { premiere, PremiereCard, PremieresSlider } from '~entities/premiere'
-import { SERVER_DATE_FORMAT } from '~shared/config'
 import { routesMap } from '~shared/routes'
 
 const Home: NextPage = () => {
@@ -81,7 +79,7 @@ sample({
   target: fetchPremieresFx,
 })
 
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
+export const getServerSideProps: GetServerSideProps = async () => {
   const scope = fork()
 
   await allSettled(pageStarted, { scope })
@@ -91,11 +89,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
       initialState: serialize(scope),
     },
   }
-}
-
-function checkDate(date: string | string[] | undefined) {
-  if (typeof date !== 'string') return false
-  return dayjs(date, SERVER_DATE_FORMAT, true).isValid()
 }
 
 export default Home

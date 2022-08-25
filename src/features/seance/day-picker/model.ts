@@ -1,20 +1,22 @@
 import { createEvent, createStore } from 'effector'
+import dayjs from 'dayjs'
 
-import { premiere } from '~entities/premiere'
+import { seance } from '~entities/seance'
+import { SERVER_DATE_FORMAT } from '~shared/config'
 
 import * as lib from './lib'
 
 export const daySelected = createEvent<string>()
 
 export const $days = createStore<lib.DayFilterItem[]>([])
-export const $selectedDay = createStore<null | string>(null)
+export const $selectedDay = createStore<string | null>(null)
 
-$days.on(premiere.model.fetchPremieresFx.doneData, (_, { answer }) =>
+$days.on(seance.model.fetchSeancesFx.doneData, (_, { answer }) =>
   lib.normalizeDateArray([...answer.schedule])
 )
 $selectedDay
   .on(daySelected, (_, selected) => selected)
-  .on(premiere.model.fetchPremieresFx.done, (selected, { params, result }) => {
+  .on(seance.model.fetchSeancesFx.done, (selected, { params, result }) => {
     if (!params.date) return result.answer.schedule[0] ?? null
     if (selected !== params.date) return params.date
 

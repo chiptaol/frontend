@@ -3,7 +3,7 @@ import { DayPicker } from '~shared/ui'
 
 import * as model from './model'
 
-export const PremiereDayPicker = () => {
+export const SeanceDayPicker = () => {
   const [selected, days, daySelected] = useUnit([
     model.$selectedDay,
     model.$days,
