@@ -13,20 +13,24 @@ import type { GetServerSideProps } from 'next'
 
 import { SeanceHeader } from '~widgets/seance-header'
 import { SeanceLegend } from '~widgets/seance-legend'
+import { SeanceFooter } from '~widgets/seance-footer'
+import { HallScheme, hallSchemeModel } from '~widgets/hall-scheme'
+import { HallZoom } from '~features/hall-zoom'
 import { seance } from '~entities/seance'
-import type { NextPageWithLayout } from '~shared/next'
 import { CinemaScreen } from '~entities/cinema'
+import type { NextPageWithLayout } from '~shared/next'
 
 const SeancePage: NextPageWithLayout = () => {
   return (
     <>
       <Helmet />
-      <div className="w-full h-full">
+      <div className="w-full h-full flex flex-col relative">
         <SeanceHeader />
         <SeanceLegend />
-        <div className="relative">
-          <CinemaScreen />
-        </div>
+        <CinemaScreen />
+        <HallZoom />
+        <HallScheme />
+        <SeanceFooter />
       </div>
     </>
   )
@@ -79,6 +83,17 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       notFound: true,
     }
   }
+
+  const seats = scope.getState(seance.model.$seance)?.seance.seats ?? []
+
+  const seatsX = seats.map((seat) => seat.x) ?? []
+  const containerWidth = Math.max(...seatsX) + 36
+  const containerHeight = seats[seats.length - 1].y + 36
+
+  await allSettled(hallSchemeModel.heightAndWidthCalculated, {
+    scope,
+    params: { width: containerWidth, height: containerHeight },
+  })
 
   return {
     props: {

@@ -6,16 +6,19 @@ import * as model from './model'
 
 export const SeanceLegend = () => {
   return (
-    <div className="flex flex-col space-y-2 items-center px-1 w-max py-2 rounded bg-[#1e1f29] mx-auto">
+    <div className="flex flex-col space-y-2 items-center px-1 w-max py-2 rounded bg-[#1e1f29] mx-auto z-10">
       <HallInfo />
       <Prices />
-      <LeftSeats />
     </div>
   )
 }
 
 const HallInfo = () => {
-  const [title, format] = useUnit([model.$hallTitle, model.$format])
+  const [title, format, left] = useUnit([
+    model.$hallTitle,
+    model.$format,
+    model.$seatsLeft,
+  ])
 
   return (
     <div className="flex items-end space-x-2">
@@ -24,6 +27,11 @@ const HallInfo = () => {
       </ShowOnly>
       <ShowOnly when={!!format}>
         <span className="text-xs font-light text-violet-100">{format}</span>
+      </ShowOnly>
+      <ShowOnly when={left !== null}>
+        <p className="text-xs font-light text-violet-100">
+          Осталось мест: {left}
+        </p>
       </ShowOnly>
     </div>
   )
@@ -55,17 +63,5 @@ const Prices = () => {
         <span className="text-xs font-light text-violet-100">Занято</span>
       </div>
     </div>
-  )
-}
-
-const LeftSeats = () => {
-  const left = useUnit(model.$seatsLeft)
-
-  return (
-    <ShowOnly when={left !== null}>
-      <p className="text-xs font-light text-violet-100">
-        Осталось мест: {left}
-      </p>
-    </ShowOnly>
   )
 }

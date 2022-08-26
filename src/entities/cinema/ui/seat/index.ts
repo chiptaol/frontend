@@ -1,1 +1,0 @@
-export { CinemaSeat } from './ui'

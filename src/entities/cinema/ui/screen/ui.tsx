@@ -1,12 +1,15 @@
-import ScreenIcon from './screen.svg'
+import Image from 'next/image'
 
 export const CinemaScreen = () => {
   return (
-    <div className="relative text-center">
-      <ScreenIcon />
-      <div className="absolute inset-x-0 top-10 text-center">
-        <span className="text-[#B5B5B5] text-xs font-light">Экран</span>
-      </div>
+    <div className="w-full flex justify-center">
+      <Image
+        width={320}
+        height={56}
+        className="object-cover"
+        src="/screen.png"
+        alt="screen"
+      />
     </div>
   )
 }

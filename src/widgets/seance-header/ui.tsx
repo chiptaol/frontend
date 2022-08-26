@@ -15,10 +15,10 @@ export const SeanceHeader = () => {
   })
 
   return (
-    <header className="w-full py-6 pl-4 border-b border-b-white border-opacity-10">
-      <nav className="flex items-start space-x-8 mb-5">
+    <header className="w-full py-5 pl-4 border-b border-b-white border-opacity-10">
+      <nav className="flex items-start space-x-8 mb-2">
         <PageBackButton href={routesMap.premiere(movieId ?? 0)} />
-        <div className="flex flex-col space-y-4">
+        <div className="flex flex-col space-y-1">
           <h1 className="text-xl leading-6 font-semibold max-w-[260px] w-full">
             {movieName}
           </h1>
