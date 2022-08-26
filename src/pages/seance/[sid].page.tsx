@@ -85,7 +85,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   }
 
   const seats = scope.getState(seance.model.$seance)?.seance.seats ?? []
-
+  //TODO rewrite coords to constants
   const seatsX = seats.map((seat) => seat.x) ?? []
   const containerWidth = Math.max(...seatsX) + 36
   const containerHeight = seats[seats.length - 1].y + 36

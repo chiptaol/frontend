@@ -1,11 +1,13 @@
 import { useList, useStoreMap, useUnit } from 'effector-react'
 import { useEffect, useRef } from 'react'
+import cn from 'classnames'
 
 import { hallZoomModel } from '~features/hall-zoom'
+import { selectSeatModel } from '~features/select-seat'
 import { CinemaSeat } from '~entities/cinema'
+import { types } from '~shared/types'
 
 import * as model from './model'
-import { types } from '~shared/types'
 
 export const HallScheme = () => {
   const containerRef = useRef<HTMLElement>(null)
@@ -14,14 +16,14 @@ export const HallScheme = () => {
   useEffect(() => {
     const containerWidth = containerRef.current?.clientWidth
     if (containerWidth) {
-      setScale(+((containerWidth - 80) / width).toFixed(1))
+      setScale(+((containerWidth - 50) / width).toFixed(1))
     }
   }, [width, setScale])
 
   return (
     <main
       ref={containerRef}
-      className="flex-grow min-h-max overflow-auto py-5 px-10 w-full hide-scrollbar"
+      className="flex-grow overflow-auto py-5 border-x-[25px] border-x-transparent w-full hide-scrollbar"
     >
       <Seats />
     </main>
@@ -49,22 +51,49 @@ const Seats = () => {
       }}
       className="relative mx-auto"
     >
+      <Rows direction="left" />
       {seats}
     </div>
   )
 }
 
+const Rows = ({ direction = 'left' }: { direction: 'left' | 'right' }) => {
+  const rows = useList(
+    model.$rows.map((rows) => Object.entries(rows)),
+    ([row, top]) => (
+      <span
+        key={row}
+        style={{ top }}
+        className={cn(
+          'absolute w-9 h-9 flex justify-center items-center font-medium text-violet-100',
+          {
+            'left-0': direction === 'left',
+            'right-0': direction === 'right',
+          }
+        )}
+      >
+        {row}
+      </span>
+    )
+  )
+  return <>{rows}</>
+}
+
 const Seat = ({ seat }: { seat: types.Seance['seats'][number] }) => {
   const isSelected = useStoreMap({
-    store: model.$selectedSeats,
+    store: selectSeatModel.$selectedSeatsIds,
     keys: [seat.id],
     fn: (selected, [id]) => selected.includes(id),
   })
 
-  const seatClicked = useUnit(model.seatClicked)
+  const [seatClicked, isDisabled] = useUnit([
+    selectSeatModel.seatClicked,
+    model.$isBookingLimitExpired,
+  ])
 
   return (
     <CinemaSeat
+      isDisabled={isDisabled && !isSelected}
       onClick={() => seatClicked(seat.id)}
       key={seat.id}
       seat={seat}

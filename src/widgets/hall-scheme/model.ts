@@ -1,16 +1,14 @@
-import { combine, createEvent, createStore, restore } from 'effector'
+import { combine, createEvent, restore } from 'effector'
 
 import { hallZoomModel } from '~features/hall-zoom'
 import { seance } from '~entities/seance'
+import { selectSeatModel } from '~features/select-seat'
 
 export const heightAndWidthCalculated = createEvent<{
   width: number
   height: number
 }>()
 
-export const seatClicked = createEvent<number>()
-
-export const $selectedSeats = createStore<number[]>([])
 export const $width = restore(
   heightAndWidthCalculated.map(({ width }) => width),
   0
@@ -21,6 +19,15 @@ export const $height = restore(
 )
 export const $seats = seance.model.$seance.map(
   (seance) => seance?.seance.seats ?? []
+)
+export const $rows = $seats.map((seats) => {
+  return seats.reduce<Record<number, number>>((acc, next) => {
+    acc[next.row] = next.y
+    return acc
+  }, {})
+})
+export const $isBookingLimitExpired = selectSeatModel.$selectedSeatsIds.map(
+  (seats) => seats.length === 5
 )
 
 export const $scaledWidth = combine(
@@ -33,9 +40,3 @@ export const $scaledHeight = combine(
   hallZoomModel.$scale,
   (height, scale) => height * scale
 )
-
-$selectedSeats.on(seatClicked, (selected, id) => {
-  if (selected.includes(id)) return selected.filter((s) => s !== id)
-
-  return selected.concat(id)
-})
