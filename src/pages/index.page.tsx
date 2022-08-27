@@ -79,7 +79,11 @@ sample({
   target: fetchPremieresFx,
 })
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getServerSideProps: GetServerSideProps = async ({ res }) => {
+  res.setHeader(
+    'Cache-Control',
+    'public, s-maxage=10, stale-while-revalidate=59'
+  )
   const scope = fork()
 
   await allSettled(pageStarted, { scope })

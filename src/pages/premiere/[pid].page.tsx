@@ -50,10 +50,17 @@ sample({
   target: movie.model.fetchMovieFx,
 })
 
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  context.res.setHeader(
+    'Cache-Control',
+    'public, s-maxage=10, stale-while-revalidate=59'
+  )
   const scope = fork()
 
-  await allSettled(pageStarted, { scope, params: { id: +ctx.params!.pid! } })
+  await allSettled(pageStarted, {
+    scope,
+    params: { id: +context.params!.pid! },
+  })
 
   if (scope.getState(movie.model.$movie) === null) {
     return {
