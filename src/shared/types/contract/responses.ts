@@ -39,3 +39,5 @@ export const fetchSeanceRequestOk = typed.obj({
     })
   ),
 })
+
+export const bookTicketRequestFx = entity.book

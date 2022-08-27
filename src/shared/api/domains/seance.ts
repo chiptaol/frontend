@@ -22,3 +22,22 @@ export const fetchSeanceRequestFx = createEffect<
     })
   },
 })
+
+export const bookTicketRequestFx = createEffect<
+  types.BookTicketRequest,
+  types.BookTicketRequestDone,
+  types.BookTicketRequestFail
+>({
+  async handler({ id, ...body }) {
+    const name = 'bookTicketRequestFx.body'
+    const response = await authenticatedRequestFx({
+      path: `seances/${id}/book`,
+      method: 'POST',
+      body,
+    })
+
+    return parseByStatus(name, response, {
+      200: ['ok', contract.bookTicketRequestFx],
+    })
+  },
+})

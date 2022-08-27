@@ -6,19 +6,20 @@ import { FillUserData } from './fill-user-data'
 import { OverviewTicket } from './overview'
 
 export const BuyTicket = () => {
-  const [open, onClose, formStatus] = useUnit([
+  const [open, onClose, isBooked] = useUnit([
     model.disclosure.$open,
     model.disclosure.close,
-    model.$formStatus,
+    model.$isBooked,
   ])
+
   return (
     <Drawer
       placement="right"
-      className="bg-darkBlue-500 text-white"
+      className="bg-darkBlue-500 text-white overflow-auto hide-scrollbar"
       open={open}
       onClose={onClose}
     >
-      {formStatus === 'fillUserData' ? <FillUserData /> : <OverviewTicket />}
+      {!isBooked ? <FillUserData /> : <OverviewTicket />}
     </Drawer>
   )
 }

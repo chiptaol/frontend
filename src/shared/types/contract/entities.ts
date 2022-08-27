@@ -77,3 +77,24 @@ export const seance = typed.obj({
   movie_id: typed.num,
   seats: typed.arr(seanceSeat),
 })
+
+export const book = typed.obj({
+  id: typed.num,
+  cinema_title: typed.str,
+  hall_title: typed.str,
+  movie: typed.obj({
+    title: typed.str,
+    original_title: typed.str,
+    poster_path: typed.str,
+    genres: typed.arr(typed.str),
+  }),
+  start_date_time: typed.str,
+  seats: typed.arr(
+    typed.obj({
+      id: typed.num,
+      row: typed.num,
+      place: typed.num,
+      price: typed.num,
+    })
+  ),
+})

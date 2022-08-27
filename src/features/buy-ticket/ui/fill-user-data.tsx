@@ -39,6 +39,7 @@ export const FillUserData = () => {
 
 const Form = () => {
   const form = useForm(model.form)
+  const isBookingLoading = useUnit(model.$isBookingLoading)
 
   const onSubmit = useCallback(
     (event: React.FormEvent) => {
@@ -57,7 +58,9 @@ const Form = () => {
           Билеты высылаются в электронную почту по указанному адресу
         </p>
       </div>
-      <Button type="submit">Продолжить</Button>
+      <Button loading={isBookingLoading} type="submit">
+        Продолжить
+      </Button>
     </form>
   )
 }

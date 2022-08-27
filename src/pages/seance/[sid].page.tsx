@@ -14,8 +14,10 @@ import type { GetServerSideProps } from 'next'
 import { SeanceHeader } from '~widgets/seance-header'
 import { SeanceLegend } from '~widgets/seance-legend'
 import { SeanceFooter } from '~widgets/seance-footer'
+import { BookTicketWidget } from '~widgets/book-ticket'
 import { HallScheme, hallSchemeModel } from '~widgets/hall-scheme'
 import { selectSeatModel } from '~features/select-seat'
+import { buyTicketModel } from '~features/buy-ticket'
 import { HallZoom } from '~features/hall-zoom'
 import { cinema, CinemaScreen } from '~entities/cinema'
 import { seance } from '~entities/seance'
@@ -32,6 +34,7 @@ const SeancePage: NextPageWithLayout = () => {
         <HallZoom />
         <HallScheme />
         <SeanceFooter />
+        <BookTicketWidget />
       </div>
     </>
   )
@@ -77,7 +80,11 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     'public, s-maxage=10, stale-while-revalidate=59'
   )
   const scope = fork({
-    values: [[selectSeatModel.$selectedSeatsIds, []]],
+    values: [
+      [selectSeatModel.$selectedSeatsIds, []],
+      [buyTicketModel.disclosure.$open, false],
+      [seance.model.$book, null],
+    ],
   })
 
   await allSettled(pageStarted, {

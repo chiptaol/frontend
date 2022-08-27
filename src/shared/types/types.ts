@@ -72,3 +72,17 @@ export type FetchSeanceRequestDone = {
   answer: typed.Get<typeof contract.fetchSeanceRequestOk>
 }
 export type FetchSeanceRequestFail = GenericErrors
+
+export type Book = typed.Get<typeof contract.book>
+
+export type BookTicketRequest = {
+  id: number
+  email: string
+  phone: string
+  seat_ids: number[]
+}
+export type BookTicketRequestDone = {
+  status: 'ok'
+  answer: typed.Get<typeof contract.bookTicketRequestFx>
+}
+export type BookTicketRequestFail = GenericErrors
