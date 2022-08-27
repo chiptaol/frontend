@@ -16,7 +16,6 @@
     "effector": "^22.3.0",
     "effector-forms": "^0.0.24",
     "effector-react": "^22.1.6",
-    "effector-storage": "^5.0.1",
     "next": "12.2.5",
     "query-string": "^7.1.1",
     "react": "18.2.0",

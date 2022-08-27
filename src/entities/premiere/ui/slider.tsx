@@ -31,6 +31,7 @@ export const PremieresSlider = () => {
             <a>
               <div className="relative w-full h-52 sm:h-72 flex items-end overflow-hidden rounded-lg">
                 <Image
+                  priority
                   layout="fill"
                   quality={100}
                   className="absolute inset-0 object-cover"
