@@ -20,7 +20,7 @@ const ZoomButton = (props: {
   return (
     <li>
       <button
-        className="h-8 w-8 rounded-sm bg-white text-black flex justify-center items-center text-xl font-medium shadow-lg"
+        className="h-8 w-8 rounded-sm bg-white text-black-500 flex justify-center items-center text-xl font-medium shadow-lg"
         onClick={props.onClick}
       >
         {props.children}

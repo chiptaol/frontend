@@ -13,7 +13,7 @@ const $seatsDict = seance.model.$seance.map((seance) =>
 export const $selectedSeats = combine(
   $seatsDict,
   $selectedSeatsIds,
-  (dict, ids) => ids.map((id) => dict[id])
+  (dict, ids) => ids.map((id) => dict[id]).filter(Boolean)
 )
 
 $selectedSeatsIds

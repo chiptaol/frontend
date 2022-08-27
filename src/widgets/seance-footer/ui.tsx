@@ -1,14 +1,14 @@
 import { Disclosure } from '@headlessui/react'
 import { useList, useUnit } from 'effector-react'
-import cn from 'classnames'
 
 import { selectSeatModel } from '~features/select-seat'
-import { ShowOnly } from '~shared/ui'
+import { Button, ShowOnly } from '~shared/ui'
 import { types } from '~shared/types'
 
 import XIcon from './x.svg'
 import ChevronIcon from './chevron-up.svg'
 import * as model from './model'
+import { BuyTicket, buyTicketModel } from '~features/buy-ticket'
 
 export const SeanceFooter = () => {
   const selectedSeats = useList(selectSeatModel.$selectedSeats, (seat) => (
@@ -22,6 +22,7 @@ export const SeanceFooter = () => {
       </Cart>
 
       <BuyButton />
+      <BuyTicket />
     </footer>
   )
 }
@@ -76,22 +77,14 @@ const Cart = ({ children }: { children: React.ReactNode }) => {
 }
 
 const BuyButton = () => {
-  const [price, isSeatSelected] = useUnit([
+  const [price, isSeatSelected, buyTicket] = useUnit([
     model.$seatsBeautifiedTotalPrice,
     model.$isSeatSelected,
+    buyTicketModel.disclosure.open,
   ])
   return (
-    <button
-      className={cn(
-        'w-full py-5 rounded-xl bg-yellow-500 text-[#252932] text-base leading-3 font-bold',
-        {
-          'bg-opacity-50 text-opacity-50 cursor-not-allowed': !isSeatSelected,
-        }
-      )}
-      type="button"
-      disabled={!isSeatSelected}
-    >
+    <Button onClick={buyTicket} type="button" disabled={!isSeatSelected}>
       {isSeatSelected ? `Купить ${price} сум` : 'Выберите места'}
-    </button>
+    </Button>
   )
 }

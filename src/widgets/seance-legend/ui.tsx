@@ -6,7 +6,7 @@ import * as model from './model'
 
 export const SeanceLegend = () => {
   return (
-    <div className="flex flex-col space-y-2 items-center px-1 w-max py-2 rounded bg-[#1e1f29] mx-auto z-10">
+    <div className="flex flex-col space-y-2 items-center px-1 w-max py-2 rounded bg-darkBlue-500 mx-auto z-10">
       <HallInfo />
       <Prices />
     </div>

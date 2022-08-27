@@ -47,7 +47,7 @@ const SeanceLinkItem = (props: {
 }) => {
   return (
     <Link href={routesMap.seance(props.seance.id)}>
-      <a className="px-4 py-3 rounded text-[#252932] text-base font-medium leading-5 bg-yellow-500">
+      <a className="px-4 py-3 rounded text-black-500 text-base font-medium leading-5 bg-yellow-500">
         {formatDate(props.seance.start_date_time, 'HH:mm')}
       </a>
     </Link>

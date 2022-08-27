@@ -15,9 +15,10 @@ import { SeanceHeader } from '~widgets/seance-header'
 import { SeanceLegend } from '~widgets/seance-legend'
 import { SeanceFooter } from '~widgets/seance-footer'
 import { HallScheme, hallSchemeModel } from '~widgets/hall-scheme'
+import { selectSeatModel } from '~features/select-seat'
 import { HallZoom } from '~features/hall-zoom'
+import { cinema, CinemaScreen } from '~entities/cinema'
 import { seance } from '~entities/seance'
-import { CinemaScreen } from '~entities/cinema'
 import type { NextPageWithLayout } from '~shared/next'
 
 const SeancePage: NextPageWithLayout = () => {
@@ -71,7 +72,9 @@ sample({
 })
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const scope = fork()
+  const scope = fork({
+    values: [[selectSeatModel.$selectedSeatsIds, []]],
+  })
 
   await allSettled(pageStarted, {
     scope,
@@ -85,10 +88,10 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   }
 
   const seats = scope.getState(seance.model.$seance)?.seance.seats ?? []
-  //TODO rewrite coords to constants
+
   const seatsX = seats.map((seat) => seat.x) ?? []
-  const containerWidth = Math.max(...seatsX) + 36
-  const containerHeight = seats[seats.length - 1].y + 36
+  const containerWidth = Math.max(...seatsX) + cinema.config.SEAT_WIDTH
+  const containerHeight = seats[seats.length - 1].y + cinema.config.SEAT_WIDTH
 
   await allSettled(hallSchemeModel.heightAndWidthCalculated, {
     scope,

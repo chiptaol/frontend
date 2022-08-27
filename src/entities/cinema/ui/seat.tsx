@@ -22,15 +22,18 @@ export const CinemaSeat = ({
       type="button"
       style={{ top: seat.y, left: seat.x }}
       className={cn(
-        'absolute h-9 text-[#252932] font-medium flex justify-center items-center w-9 transition-colors rounded-md',
+        'absolute h-9 text-black-500 font-semibold flex justify-center items-center w-9 transition-colors rounded-md text-opacity-0',
         seatStatus(isSelected, seat.is_vip, !seat.is_available),
         {
-          'cursor-not-allowed bg-opacity-50 text-opacity-50 border-opacity-50':
+          'cursor-not-allowed bg-opacity-50 text-opacity-0 border-opacity-50':
             isDisabled,
+          'text-opacity-100 !scale-125': isSelected,
+          'sm:hover:text-opacity-100 sm:hover:bg-yellow-500 sm:hover:scale-110':
+            !isDisabled,
         }
       )}
     >
-      {isSelected && seat.place}
+      {seat.place}
     </button>
   )
 }
