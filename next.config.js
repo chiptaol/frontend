@@ -10,6 +10,7 @@ const nextConfig = {
   },
   images: {
     domains: [process.env.SERVER_HOSTNAME],
+    minimumCacheTTL: 31536000,
   },
   webpack(config) {
     config.module.rules.push({
