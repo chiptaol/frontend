@@ -88,7 +88,6 @@ export const getStaticProps: GetStaticProps = async () => {
     props: {
       initialState: serialize(scope),
     },
-    revalidate: 1,
   }
 }
 
