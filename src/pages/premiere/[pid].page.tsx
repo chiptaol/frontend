@@ -1,13 +1,14 @@
-import { allSettled, createEvent, fork, sample, serialize } from 'effector'
+import { allSettled, fork, serialize } from 'effector'
 import { useStoreMap } from 'effector-react'
 import { useMemo } from 'react'
 import Head from 'next/head'
-import type { GetServerSideProps } from 'next'
+import type { GetStaticPaths, GetStaticProps } from 'next'
 
 import { MovieTabs } from '~widgets/movie-tabs'
 import { movie, MovieOverview } from '~entities/movie'
 import { FooterInfo } from '~shared/ui'
 import type { NextPageWithLayout } from '~shared/next'
+import { request } from '~shared/api'
 
 const PremierePage: NextPageWithLayout = () => {
   return (
@@ -43,21 +44,23 @@ const Helmet = () => {
   )
 }
 
-const pageStarted = createEvent<{ id: number }>()
+export const getStaticPaths: GetStaticPaths = async () => {
+  const premieres = await request.fetchPremieresRequestFx({ query: '' })
 
-sample({
-  clock: pageStarted,
-  target: movie.model.fetchMovieFx,
-})
+  const paths = premieres.answer.premieres.map(({ id }) => ({
+    params: { pid: `${id}` },
+  }))
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  context.res.setHeader(
-    'Cache-Control',
-    'public, s-maxage=10, stale-while-revalidate=59'
-  )
+  return {
+    paths,
+    fallback: 'blocking',
+  }
+}
+
+export const getStaticProps: GetStaticProps = async (context) => {
   const scope = fork()
 
-  await allSettled(pageStarted, {
+  await allSettled(movie.model.fetchMovieFx, {
     scope,
     params: { id: +context.params!.pid! },
   })
@@ -72,6 +75,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     props: {
       initialState: serialize(scope),
     },
+    revalidate: 60,
   }
 }
 
