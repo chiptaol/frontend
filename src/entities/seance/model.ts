@@ -1,6 +1,5 @@
 import {
   attach,
-  createApi,
   createEffect,
   createEvent,
   createStore,
@@ -24,31 +23,14 @@ type FetchPremiereSeancesParams = {
 type SeanceOverall = types.FetchSeanceRequestDone['answer']['data']
 type Seat = types.Seance['seats'][number]
 type UpdateSeat = Pick<Seat, 'id' | 'status'>
-enum WS_STATUS {
-  open = 'open',
-  close = 'close',
-  error = 'error',
-}
 
 export const resetBooked = createEvent()
 export const seatUpdated = createEvent<UpdateSeat>()
-
 export const closeSocket = createEvent()
-
-const $status = createStore<WS_STATUS>(WS_STATUS.open)
-const $socket = createStore<null | WebSocket>(null)
-
-const { error, onClose } = createApi($status, {
-  onOpen: (__: WS_STATUS, _: unknown) => WS_STATUS.open,
-  onClose: (__: WS_STATUS, _: unknown) => WS_STATUS.close,
-  error: (__: WS_STATUS, _: unknown) => WS_STATUS.error,
-})
-
 const onMessage = createEvent<MessageEvent>()
 const messageReceived = onMessage.map(({ data }) => JSON.parse(data))
 
 const validateReceivedMessageFx = createEffect(lib.validate)
-
 export const openSocketFx = createEffect((id: number) => {
   const socket = new WebSocket(`${SOCKET_URL + id}`)
 
@@ -57,21 +39,8 @@ export const openSocketFx = createEffect((id: number) => {
 
   return socket
 })
-
 const closeSocketFx = createEffect((socket: WebSocket) => {
-  const messageReceived = scopeBind(onMessage)
-  socket.removeEventListener('message', messageReceived)
-
   socket.close()
-})
-
-$socket.on(openSocketFx.doneData, (_, socket) => socket).reset(error, onClose)
-
-sample({
-  clock: [closeSocket, openSocketFx],
-  source: $socket,
-  filter: Boolean,
-  target: closeSocketFx,
 })
 
 export const fetchPremiereSeancesFx = attach({
@@ -94,6 +63,7 @@ export const $book = createStore<null | types.Book>(null)
 export const $seats = createStore<
   Record<number, types.Seance['seats'][number]>
 >({})
+const $socket = createStore<null | WebSocket>(null)
 
 $premiereSeances.on(fetchPremiereSeancesFx.doneData, (_, { answer }) => [
   ...answer.data,
@@ -103,6 +73,14 @@ $book.on(bookTicketFx.doneData, (_, { answer }) => answer).reset(resetBooked)
 $seats.on(fetchSeanceFx.doneData, (_, { answer }) =>
   normalizr(answer.data.seance.seats)
 )
+$socket.on(openSocketFx.doneData, (_, socket) => socket).reset(closeSocketFx)
+
+sample({
+  clock: [closeSocket, openSocketFx],
+  source: $socket,
+  filter: Boolean,
+  target: closeSocketFx,
+})
 
 sample({
   clock: messageReceived,
@@ -111,12 +89,15 @@ sample({
 
 sample({
   clock: validateReceivedMessageFx.doneData,
+  target: seatUpdated,
+})
+
+sample({
+  clock: seatUpdated,
   source: $seats,
   filter: (seats, { id }) => !!seats[id],
   fn: (seats, { id, status }) => {
     const seat = seats[id]
-
-    console.log(seat, status)
 
     return { ...seats, [seat.id]: { ...seat, status } }
   },

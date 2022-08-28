@@ -1,4 +1,4 @@
-import { combine, createEvent, createStore } from 'effector'
+import { combine, createEvent, createStore, sample } from 'effector'
 import { seance } from '~entities/seance'
 import { normalizr } from '~shared/lib/normalizr'
 
@@ -23,3 +23,10 @@ $selectedSeatsIds
     return selected.concat(id)
   })
   .on(removeSeat, (seats, id) => seats.filter((seat) => seat !== id))
+
+sample({
+  clock: seance.model.seatUpdated,
+  source: $selectedSeatsIds,
+  fn: (ids, { id }) => ids.filter((seatId) => seatId !== id),
+  target: $selectedSeatsIds,
+})

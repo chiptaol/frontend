@@ -1,4 +1,5 @@
 import Image from 'next/image'
+
 import { imageSrc } from '~shared/config'
 import { types } from '~shared/types'
 

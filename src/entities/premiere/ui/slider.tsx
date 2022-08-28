@@ -6,23 +6,27 @@ import { useKeenSlider } from 'keen-slider/react'
 
 import { formatDate } from '~shared/lib/format-date'
 import { routesMap } from '~shared/routes'
+import { imageSrc } from '~shared/config'
 
 import * as model from '../model'
-
-const SERVER_DOMAIN = process.env.SERVER_STORAGE_DOMAIN
 
 export const PremieresSlider = () => {
   const premieres = useUnit(model.$actualPremieres)
   const intervalRef = useRef<NodeJS.Timer | null>(null)
 
-  const autoPlay = useCallback((play: boolean) => {
-    clearInterval(intervalRef.current ?? 0)
-    if (instanceRef.current && play) {
-      intervalRef.current = setInterval(() => {
-        instanceRef.current?.next()
-      }, 5000)
-    }
-  }, [])
+  const slidesLength = premieres.length
+
+  const autoPlay = useCallback(
+    (play: boolean) => {
+      clearInterval(intervalRef.current ?? 0)
+      if (instanceRef.current && play && slidesLength >= 3) {
+        intervalRef.current = setInterval(() => {
+          instanceRef.current?.next()
+        }, 5000)
+      }
+    },
+    [slidesLength]
+  )
 
   const [ref, instanceRef] = useKeenSlider<HTMLDivElement>({
     loop: true,
@@ -68,7 +72,7 @@ export const PremieresSlider = () => {
                   layout="fill"
                   quality={100}
                   className="absolute inset-0 object-cover"
-                  src={`${SERVER_DOMAIN}/${premiere.backdrop_path}`}
+                  src={imageSrc(premiere.backdrop_path)}
                   alt="slider_image"
                 />
                 <div className="flex flex-col space-y-3 relative px-3 py-7 bg-sliderContent w-full">

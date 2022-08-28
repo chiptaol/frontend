@@ -11,8 +11,8 @@ import { routesMap } from '~shared/routes'
 export const OverviewTicket = () => {
   const [onClose] = useUnit([model.disclosure.close])
   return (
-    <div className="flex flex-col w-full h-full space-y-5">
-      <div className="w-full px-4 pt-6 pb-2 flex items-center space-x-10 bg-header">
+    <div className="flex flex-col w-full h-full space-y-4">
+      <div className="w-full px-4 pt-5 flex items-center space-x-10 bg-header">
         <IconButton
           className="p-2 hover:bg-white hover:bg-opacity-5 transition-colors"
           onClick={onClose}

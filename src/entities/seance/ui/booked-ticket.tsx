@@ -21,8 +21,8 @@ const Movie = () => {
   if (!booked) return null
 
   return (
-    <div className="w-full rounded-xl bg-darkBlue-600 py-7 px-5">
-      <div className="flex space-x-4 items-end mb-8">
+    <div className="w-full rounded-xl bg-darkBlue-600 p-5">
+      <div className="flex space-x-4 items-end mb-6">
         <Image
           width={125}
           height={178}
@@ -40,7 +40,7 @@ const Movie = () => {
           </p>
         </div>
       </div>
-      <div className="grid grid-cols-2 gap-x-5 gap-y-6">
+      <div className="grid grid-cols-2 gap-x-5 gap-y-4">
         <GridItem label="Кинотеатр" title={booked.cinema_title} />
         <GridItem label="Зал" title={booked.hall_title} />
         <GridItem
@@ -72,7 +72,7 @@ const Pricing = () => {
   )
 
   return (
-    <div className="w-full px-4 pt-8 pb-6 flex flex-col space-y-4 bg-darkBlue-600 rounded-xl">
+    <div className="w-full px-4 py-5 flex flex-col space-y-4 bg-darkBlue-600 rounded-xl">
       {seatsPrices}
       <div className="flex items-end w-full space-x-1">
         <b className="flex-shrink-0 text-xl leading-4 font-extrabold">Итого</b>

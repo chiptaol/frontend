@@ -11,8 +11,9 @@ export const $prices = seance.model.$seance.map((seance) => ({
     ? beatufiyPrice(seance?.seance.prices.standard)
     : null,
 }))
-export const $seatsLeft = seance.model.$seance.map(
-  (seance) => seance?.seance.seats_left ?? null
+export const $seatsLeft = seance.model.$seats.map(
+  (seats) =>
+    Object.values(seats).filter((seat) => seat.status === 'available').length
 )
 export const $format = seance.model.$seance.map(
   (seance) => seance?.seance.format ?? null

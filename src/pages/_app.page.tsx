@@ -28,7 +28,6 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   })
 
   if (typeof window !== 'undefined') clientScope = scope
-  console.log(serialize(scope), clientScope ? serialize(clientScope) : null)
 
   const getLayout = Component.getLayout ?? getDefaultLayout
 

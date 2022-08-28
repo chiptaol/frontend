@@ -14,7 +14,6 @@ export const BuyTicket = () => {
 
   return (
     <Drawer
-      placement="right"
       className="bg-darkBlue-500 text-white overflow-auto hide-scrollbar"
       open={open}
       onClose={onClose}
