@@ -15,7 +15,7 @@ export const PremiereCard = ({ premiere }: Props) => {
           layout="fill"
           className="object-cover object-top absolute inset-0"
           src={imageSrc(premiere.poster_path)}
-          sizes={'(min-width: 480px) 33vw, (min-width: 640px) 25vw, 10vw'}
+          sizes={'(min-width: 640px) 25vw, (max-width: 768px) 15vw, 33vw'}
           alt="premiere_poster"
         />
         {premiere.is_premiere && (

@@ -15,15 +15,16 @@ export const CinemaSeat = ({
   onClick,
   isDisabled,
 }: Props) => {
+  const isAvailable = seat.status === 'available'
   return (
     <button
       onClick={onClick}
-      disabled={isDisabled}
+      disabled={isDisabled || !isAvailable}
       type="button"
       style={{ top: seat.y, left: seat.x }}
       className={cn(
         'absolute h-9 text-black-500 font-semibold flex justify-center items-center w-9 transition-colors rounded-md text-opacity-0',
-        seatStatus(isSelected, seat.is_vip, !seat.is_available),
+        seatStatus(isSelected, seat.is_vip, !isAvailable),
         {
           'cursor-not-allowed bg-opacity-50 text-opacity-0 border-opacity-50':
             isDisabled,

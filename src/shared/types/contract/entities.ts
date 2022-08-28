@@ -56,7 +56,7 @@ export const premiereSeance = typed.obj({
 
 export const seanceSeat = typed.obj({
   id: typed.num,
-  is_available: typed.bool,
+  status: typed.uni('available', 'pending', 'unavailable'),
   is_vip: typed.bool,
   row: typed.num,
   place: typed.num,

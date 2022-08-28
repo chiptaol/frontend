@@ -6,7 +6,7 @@ import customParseFormat from 'dayjs/plugin/customParseFormat'
 import type { ReactElement } from 'react'
 import type { Scope } from 'effector'
 
-import 'swiper/css'
+import 'keen-slider/keen-slider.min.css'
 
 import { Layout } from '~widgets/layout'
 import type { AppPropsWithLayout } from '~shared/next'
@@ -28,6 +28,7 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   })
 
   if (typeof window !== 'undefined') clientScope = scope
+  console.log(serialize(scope), clientScope ? serialize(clientScope) : null)
 
   const getLayout = Component.getLayout ?? getDefaultLayout
 

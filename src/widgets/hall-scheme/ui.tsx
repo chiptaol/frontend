@@ -11,7 +11,12 @@ import * as model from './model'
 
 export const HallScheme = () => {
   const containerRef = useRef<HTMLElement>(null)
-  const [width, setScale] = useUnit([model.$width, hallZoomModel.setScale])
+  const [width, setScale, mounted, unmounted] = useUnit([
+    model.$width,
+    hallZoomModel.setScale,
+    model.mounted,
+    model.unmounted,
+  ])
 
   useEffect(() => {
     const containerWidth = containerRef.current?.clientWidth
@@ -19,6 +24,13 @@ export const HallScheme = () => {
       setScale(+((containerWidth - 50) / width).toFixed(1))
     }
   }, [width, setScale])
+
+  useEffect(() => {
+    mounted()
+    return () => {
+      unmounted()
+    }
+  }, [])
 
   return (
     <main

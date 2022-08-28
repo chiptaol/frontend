@@ -1,8 +1,8 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { useUnit } from 'effector-react'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import { Autoplay } from 'swiper'
+import { useCallback, useEffect, useRef } from 'react'
+import { useKeenSlider } from 'keen-slider/react'
 
 import { formatDate } from '~shared/lib/format-date'
 import { routesMap } from '~shared/routes'
@@ -13,20 +13,53 @@ const SERVER_DOMAIN = process.env.SERVER_STORAGE_DOMAIN
 
 export const PremieresSlider = () => {
   const premieres = useUnit(model.$actualPremieres)
+  const intervalRef = useRef<NodeJS.Timer | null>(null)
+
+  const autoPlay = useCallback((play: boolean) => {
+    clearInterval(intervalRef.current ?? 0)
+    if (instanceRef.current && play) {
+      intervalRef.current = setInterval(() => {
+        instanceRef.current?.next()
+      }, 5000)
+    }
+  }, [])
+
+  const [ref, instanceRef] = useKeenSlider<HTMLDivElement>({
+    loop: true,
+
+    slides: {
+      perView: 1.25,
+      origin: 'center',
+      spacing: 16,
+    },
+    dragStarted: () => {
+      autoPlay(false)
+    },
+    dragEnded: () => {
+      autoPlay(true)
+    },
+  })
+
+  useEffect(() => {
+    autoPlay(true)
+    return () => {
+      clearInterval(intervalRef.current ?? 0)
+    }
+  }, [])
+
   return (
-    <Swiper
-      autoplay={{
-        delay: 5000,
-        disableOnInteraction: true,
+    <div
+      ref={ref}
+      className="keen-slider"
+      onMouseOver={() => {
+        autoPlay(false)
       }}
-      slidesPerView={1.25}
-      centeredSlides
-      loop
-      spaceBetween={16}
-      modules={[Autoplay]}
+      onMouseOut={() => {
+        autoPlay(true)
+      }}
     >
       {premieres.map((premiere) => (
-        <SwiperSlide key={premiere.id}>
+        <div className="keen-slider__slide" key={premiere.id}>
           <Link href={routesMap.premiere(premiere.id)}>
             <a>
               <div className="relative w-full h-52 sm:h-72 flex items-end overflow-hidden rounded-lg">
@@ -49,8 +82,8 @@ export const PremieresSlider = () => {
               </div>
             </a>
           </Link>
-        </SwiperSlide>
+        </div>
       ))}
-    </Swiper>
+    </div>
   )
 }

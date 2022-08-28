@@ -75,10 +75,10 @@ sample({
 })
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  context.res.setHeader(
-    'Cache-Control',
-    'public, s-maxage=10, stale-while-revalidate=59'
-  )
+  // context.res.setHeader(
+  //   'Cache-Control',
+  //   'public, s-maxage=10, stale-while-revalidate=59'
+  // )
   const scope = fork({
     values: [
       [selectSeatModel.$selectedSeatsIds, []],
@@ -112,6 +112,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   return {
     props: {
       initialState: serialize(scope),
+      id: +context.params!.sid!,
     },
   }
 }

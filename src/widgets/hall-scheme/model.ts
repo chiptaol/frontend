@@ -1,13 +1,15 @@
-import { combine, createEvent, restore } from 'effector'
+import { combine, createEvent, restore, sample } from 'effector'
 
 import { hallZoomModel } from '~features/hall-zoom'
-import { seance } from '~entities/seance'
 import { selectSeatModel } from '~features/select-seat'
+import { seance } from '~entities/seance'
 
 export const heightAndWidthCalculated = createEvent<{
   width: number
   height: number
 }>()
+export const mounted = createEvent()
+export const unmounted = createEvent()
 
 export const $width = restore(
   heightAndWidthCalculated.map(({ width }) => width),
@@ -17,9 +19,7 @@ export const $height = restore(
   heightAndWidthCalculated.map(({ height }) => height),
   0
 )
-export const $seats = seance.model.$seance.map(
-  (seance) => seance?.seance.seats ?? []
-)
+export const $seats = seance.model.$seats.map((seats) => Object.values(seats))
 export const $rows = $seats.map((seats) => {
   return seats.reduce<Record<number, number>>((acc, next) => {
     acc[next.row] = next.y
@@ -40,3 +40,16 @@ export const $scaledHeight = combine(
   hallZoomModel.$scale,
   (height, scale) => height * scale
 )
+
+sample({
+  clock: mounted,
+  source: seance.model.$seance,
+  filter: Boolean,
+  fn: ({ seance }) => seance.id,
+  target: seance.model.openSocketFx,
+})
+
+sample({
+  clock: unmounted,
+  target: seance.model.closeSocket,
+})

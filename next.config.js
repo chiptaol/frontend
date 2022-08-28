@@ -7,6 +7,7 @@ const nextConfig = {
     SERVER_DOMAIN: process.env.SERVER_DOMAIN,
     SERVER_STORAGE_DOMAIN: process.env.SERVER_STORAGE_DOMAIN,
     SERVER_HOSTNAME: process.env.SERVER_HOSTNAME,
+    WEBSOCKET: process.env.WEBSOCKET,
   },
   images: {
     domains: [process.env.SERVER_HOSTNAME],
