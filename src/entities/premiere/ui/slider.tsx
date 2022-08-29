@@ -1,8 +1,9 @@
 import Link from 'next/link'
 import Image from 'next/image'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { useUnit } from 'effector-react'
-import { useCallback, useEffect, useRef } from 'react'
 import { useKeenSlider } from 'keen-slider/react'
+import cn from 'classnames'
 
 import { formatDate } from '~shared/lib/format-date'
 import { routesMap } from '~shared/routes'
@@ -13,29 +14,31 @@ import * as model from '../model'
 export const PremieresSlider = () => {
   const premieres = useUnit(model.$actualPremieres)
   const intervalRef = useRef<NodeJS.Timer | null>(null)
-
   const slidesLength = premieres.length
+  const [mounted, setMounted] = useState(false)
 
   const autoPlay = useCallback(
     (play: boolean) => {
-      clearInterval(intervalRef.current ?? 0)
-      if (instanceRef.current && play && slidesLength >= 3) {
-        intervalRef.current = setInterval(() => {
-          instanceRef.current?.next()
-        }, 5000)
+      if (intervalRef.current) clearInterval(intervalRef.current)
+      if (play && slidesLength >= 3) {
+        if (instanceRef.current) {
+          intervalRef.current = setInterval(() => {
+            instanceRef.current?.next()
+          }, 5000)
+        }
       }
     },
-    [slidesLength]
+    [slidesLength, intervalRef]
   )
 
   const [ref, instanceRef] = useKeenSlider<HTMLDivElement>({
     loop: true,
-
     slides: {
       perView: 1.25,
       origin: 'center',
       spacing: 16,
     },
+
     dragStarted: () => {
       autoPlay(false)
     },
@@ -45,10 +48,15 @@ export const PremieresSlider = () => {
   })
 
   useEffect(() => {
+    const timerID = intervalRef.current
     autoPlay(true)
     return () => {
-      clearInterval(intervalRef.current ?? 0)
+      if (timerID) clearInterval(timerID)
     }
+  }, [intervalRef, autoPlay])
+
+  useEffect(() => {
+    setMounted(true)
   }, [])
 
   return (
@@ -66,7 +74,14 @@ export const PremieresSlider = () => {
         <div className="keen-slider__slide" key={premiere.id}>
           <Link href={routesMap.premiere(premiere.id)}>
             <a>
-              <div className="relative w-full h-52 sm:h-72 flex items-end overflow-hidden rounded-lg">
+              <div
+                className={cn(
+                  'relative w-full h-52 sm:h-72 flex items-end overflow-hidden rounded-lg',
+                  {
+                    'max-w-xs xs:max-w-md sm:max-w-xl': !mounted,
+                  }
+                )}
+              >
                 <Image
                   priority
                   layout="fill"
@@ -91,5 +106,3 @@ export const PremieresSlider = () => {
     </div>
   )
 }
-
-function autoPlay() {}

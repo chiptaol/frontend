@@ -8,10 +8,10 @@ type Props = {
 
 export const DayPicker = (props: Props) => {
   return (
-    <div className="flex items-center space-x-2 w-full overflow-x-auto pr-2 hide-scrollbar">
+    <div className="flex items-center space-x-2 w-full overflow-x-auto mr-2 hide-scrollbar">
       {props.days.map((day) => (
         <DayPickerItem
-          key={day.weekDay}
+          key={day.dayOrDate}
           day={day}
           isActive={props.selectedDate === day.formatted}
           onClick={() => props.onDateSelect(day.formatted)}
