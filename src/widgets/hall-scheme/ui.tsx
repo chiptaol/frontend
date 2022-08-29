@@ -30,7 +30,7 @@ export const HallScheme = () => {
     return () => {
       unmounted()
     }
-  }, [])
+  }, [mounted, unmounted])
 
   return (
     <main

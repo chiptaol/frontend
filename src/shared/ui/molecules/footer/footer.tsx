@@ -44,8 +44,11 @@ type FooterListItemProps = {
 
 const FooterListItem = (props: FooterListItemProps) => {
   return (
-    <div className="flex flex-col w-full items-center border-t border-white border-opacity-10 pb-3">
-      <div className="flex flex-col space-y-2.5 w-14 items-center mb-2">
+    <button
+      type="button"
+      className="flex flex-col w-full items-center border-t border-white border-opacity-10 pb-3"
+    >
+      <span className="flex flex-col space-y-2.5 w-14 items-center mb-2">
         <hr
           className={cn(
             'transition-colors w-full h-[3px] rounded-[3px] border-none',
@@ -61,15 +64,15 @@ const FooterListItem = (props: FooterListItemProps) => {
             'fill-gray-400': !props.isActive,
           })}
         />
-      </div>
-      <p
+      </span>
+      <span
         className={cn('text-xs leading-3 transition-colors', {
           'text-white': props.isActive,
           'text-gray-400': !props.isActive,
         })}
       >
         {props.title}
-      </p>
-    </div>
+      </span>
+    </button>
   )
 }

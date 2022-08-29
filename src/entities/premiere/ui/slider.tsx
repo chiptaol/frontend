@@ -38,9 +38,9 @@ export const PremieresSlider = () => {
                     alt="slider_image"
                   />
                   <div className="flex flex-col space-y-3 relative px-3 py-7 bg-sliderContent w-full">
-                    <h4 className="font-semibold text-lg leading-5 truncate w-3/4">
+                    <h2 className="font-semibold text-lg leading-5 truncate w-3/4">
                       {premiere.title}
-                    </h4>
+                    </h2>
                     <span className="text-yellow-500 text-xs">
                       С {formatDate(premiere.release_date, 'DD MMMM')}
                     </span>
