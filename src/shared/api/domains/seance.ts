@@ -41,3 +41,21 @@ export const bookTicketRequestFx = createEffect<
     })
   },
 })
+
+export const cancelTicketBookRequestFx = createEffect<
+  types.CancelTicketBookRequest,
+  types.CancelTicketBookRequestDone,
+  types.CancelTicketBookRequestFail
+>({
+  async handler({ id }) {
+    const name = 'cancelTicketBookRequestFx.body'
+    const response = await authenticatedRequestFx({
+      path: `seances/${id}/cancel-book`,
+      method: 'POST',
+    })
+
+    return parseByStatus(name, response, {
+      200: ['ok', contract.cancelTicketBookRequestOk],
+    })
+  },
+})

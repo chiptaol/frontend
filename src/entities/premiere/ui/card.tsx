@@ -11,7 +11,7 @@ export const PremiereCard = ({ premiere }: Props) => {
   const genre = premiere.genres[0] ?? null
   return (
     <div className="flex flex-col space-y-2.5 h-full justify-between">
-      <div className="w-full relative h-36 xs:h-48 sm:h-60 rounded-xl overflow-hidden bg-red-50">
+      <div className="w-full relative h-36 xs:h-48 sm:h-60 rounded-xl overflow-hidden">
         <Image
           layout="fill"
           className="object-cover object-top absolute inset-0"

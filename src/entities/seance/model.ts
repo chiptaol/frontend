@@ -30,6 +30,15 @@ export const closeSocket = createEvent()
 const onMessage = createEvent<MessageEvent>()
 const messageReceived = onMessage.map(({ data }) => JSON.parse(data))
 
+export const $premiereSeances = createStore<types.PremiereSeance[]>([])
+export const $seance = createStore<SeanceOverall | null>(null)
+export const $book = createStore<null | types.Book>(null)
+
+export const $seats = createStore<
+  Record<number, types.Seance['seats'][number]>
+>({})
+const $socket = createStore<null | WebSocket>(null)
+
 const validateReceivedMessageFx = createEffect(lib.validate)
 export const openSocketFx = createEffect((id: number) => {
   const socket = new WebSocket(`${SOCKET_URL + id}`)
@@ -42,7 +51,6 @@ export const openSocketFx = createEffect((id: number) => {
 const closeSocketFx = createEffect((socket: WebSocket) => {
   socket.close()
 })
-
 export const fetchPremiereSeancesFx = attach({
   effect: request.fetchSeancesRequestFx,
   mapParams: ({ id, ...params }: FetchPremiereSeancesParams) => ({
@@ -55,15 +63,15 @@ export const fetchPremiereSeancesFx = attach({
 })
 export const fetchSeanceFx = attach({ effect: request.fetchSeanceRequestFx })
 export const bookTicketFx = attach({ effect: request.bookTicketRequestFx })
+export const cancelTicketBookFx = attach({
+  effect: request.cancelTicketBookRequestFx,
+  source: $book,
+  mapParams: (_: void, book) => {
+    if (!book) throw Error('Book info not found')
 
-export const $premiereSeances = createStore<types.PremiereSeance[]>([])
-export const $seance = createStore<SeanceOverall | null>(null)
-export const $book = createStore<null | types.Book>(null)
-
-export const $seats = createStore<
-  Record<number, types.Seance['seats'][number]>
->({})
-const $socket = createStore<null | WebSocket>(null)
+    return { id: book.id }
+  },
+})
 
 $premiereSeances.on(fetchPremiereSeancesFx.doneData, (_, { answer }) => [
   ...answer.data,
@@ -100,6 +108,24 @@ sample({
     const seat = seats[id]
 
     return { ...seats, [seat.id]: { ...seat, status } }
+  },
+  target: $seats,
+})
+
+sample({
+  clock: cancelTicketBookFx.doneData,
+  source: $seats,
+  fn: (seats, { answer }) => {
+    const updated = answer.data.reduce<Record<number, Seat>>((acc, next) => {
+      const seat = seats[next]
+      if (seat) {
+        acc[seat.id] = { ...seat, status: 'available' }
+      }
+
+      return acc
+    }, {})
+
+    return { ...seats, ...updated }
   },
   target: $seats,
 })

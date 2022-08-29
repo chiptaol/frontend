@@ -47,7 +47,7 @@ const ButtonTheme: Record<ButtonTheme, Theme> = {
       'text-blue-500 border-2 border-blue-500 disabled:opacity-50 focus:ring-blue-300',
   },
   secondary: {
-    solid: 'text-blue-500 bg-blue-400 focus:ring-blue-200',
+    solid: 'text-black-500 bg-blue-50 focus:ring-blue-200',
     outline: 'noop',
   },
   danger: {

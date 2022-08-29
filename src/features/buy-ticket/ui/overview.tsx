@@ -1,21 +1,22 @@
 import { useUnit } from 'effector-react'
 
 import { SeanceBookedTicket } from '~entities/seance'
-import { IconButton, PromoButton } from '~shared/ui'
+import { Button, IconButton, Modal, PromoButton } from '~shared/ui'
 import BackSvg from '~shared/assets/back.svg'
 
 import * as model from '../model'
 import Link from 'next/link'
 import { routesMap } from '~shared/routes'
+import { useRef } from 'react'
 
 export const OverviewTicket = () => {
-  const [onClose] = useUnit([model.disclosure.close])
+  const [openConfirmExitModal] = useUnit([model.confirmExitDisclosure.open])
   return (
     <div className="flex flex-col w-full h-full space-y-4">
       <div className="w-full px-4 pt-5 flex items-center space-x-10 bg-header">
         <IconButton
           className="p-2 hover:bg-white hover:bg-opacity-5 transition-colors"
-          onClick={onClose}
+          onClick={openConfirmExitModal}
           aria-label="close-drawer"
         >
           <BackSvg />
@@ -42,6 +43,34 @@ export const OverviewTicket = () => {
           </a>
         </Link>
       </div>
+      <ConfirmExitModal />
     </div>
+  )
+}
+
+const ConfirmExitModal = () => {
+  const ref = useRef<HTMLButtonElement | null>(null)
+  const [open, onClose, closeOverview] = useUnit([
+    model.confirmExitDisclosure.$open,
+    model.confirmExitDisclosure.close,
+    model.cancelBookingButtonClicked,
+  ])
+
+  return (
+    <Modal open={open} onClose={onClose} initialFocus={ref}>
+      <div className="w-80 px-4 py-6 flex flex-col space-y-3">
+        <h1 className="text-lg leading-5 font-semibold text-center">
+          Вы уверены что хотите отменить покупку?
+        </h1>
+        <div className="flex flex-col items-center space-y-2">
+          <Button onClick={onClose} ref={ref}>
+            Продолжить покупку
+          </Button>
+          <Button onClick={closeOverview} theme="secondary">
+            Выйти
+          </Button>
+        </div>
+      </div>
+    </Modal>
   )
 }

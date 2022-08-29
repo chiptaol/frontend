@@ -86,3 +86,12 @@ export type BookTicketRequestDone = {
   answer: typed.Get<typeof contract.bookTicketRequestFx>
 }
 export type BookTicketRequestFail = GenericErrors
+
+export type CancelTicketBookRequest = {
+  id: number
+}
+export type CancelTicketBookRequestDone = {
+  status: 'ok'
+  answer: typed.Get<typeof contract.cancelTicketBookRequestOk>
+}
+export type CancelTicketBookRequestFail = GenericErrors

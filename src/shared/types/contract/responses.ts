@@ -41,3 +41,7 @@ export const fetchSeanceRequestOk = typed.obj({
 })
 
 export const bookTicketRequestFx = entity.book
+
+export const cancelTicketBookRequestOk = typed.obj({
+  data: typed.arr(typed.num),
+})
