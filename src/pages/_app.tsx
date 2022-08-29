@@ -9,7 +9,6 @@ import type { Scope } from 'effector'
 import type { ReactElement } from 'react'
 
 import 'nprogress/nprogress.css'
-import 'keen-slider/keen-slider.min.css'
 
 import { Layout } from '~widgets/layout'
 import type { AppPropsWithLayout } from '~shared/next'
