@@ -66,15 +66,15 @@ export const PremieresSlider = () => {
         <div className="keen-slider__slide" key={premiere.id}>
           <Link href={routesMap.premiere(premiere.id)}>
             <a>
-              <div className="relative w-full h-52 sm:h-72 flex items-end overflow-hidden rounded-lg">
-                <Image
+              <div className="relative w-full h-52 sm:h-72 flex items-end overflow-hidden rounded-lg bg-red-50">
+                {/* <Image
                   priority
                   layout="fill"
                   quality={100}
                   className="absolute inset-0 object-cover"
                   src={imageSrc(premiere.backdrop_path)}
                   alt="slider_image"
-                />
+                /> */}
                 <div className="flex flex-col space-y-3 relative px-3 py-7 bg-sliderContent w-full">
                   <h4 className="font-semibold text-lg leading-5 truncate w-3/4">
                     {premiere.title}
