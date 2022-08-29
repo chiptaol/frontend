@@ -9,7 +9,7 @@ import {
 } from 'effector'
 import { useList } from 'effector-react'
 import Link from 'next/link'
-import type { GetStaticProps, NextPage } from 'next'
+import type { GetServerSideProps, NextPage } from 'next'
 
 import {
   PremiereDayPicker,
@@ -79,7 +79,11 @@ sample({
   target: fetchPremieresFx,
 })
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getServerSideProps: GetServerSideProps = async ({ res }) => {
+  res.setHeader(
+    'Cache-Control',
+    'public, s-maxage=10, stale-while-revalidate=59'
+  )
   const scope = fork()
 
   await allSettled(pageStarted, { scope })
