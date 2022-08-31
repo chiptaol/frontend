@@ -18,6 +18,7 @@ export const BookTicket = () => {
       className="bg-darkBlue-500 text-white overflow-auto hide-scrollbar"
       open={open}
       onClose={onClose}
+      closeOnOverlayClick={!isBooked}
     >
       {!isBooked ? <FillUserData /> : <OverviewTicket />}
     </Drawer>

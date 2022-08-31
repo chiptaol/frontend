@@ -31,14 +31,14 @@ type DrawerProps = {
  * @see https://github.com/tailwindlabs/headlessui/issues/426
  */
 
-export const Drawer = ({
-  placement = 'left',
-  className = '',
-  ...props
-}: DrawerProps) => {
+export const Drawer = ({ placement = 'left', className = '', ...props }: DrawerProps) => {
   return (
     <Transition.Root show={props.open} as={Fragment}>
-      <Dialog as="div" className="relative z-10" onClose={props.onClose}>
+      <Dialog
+        as="div"
+        className="relative z-10"
+        onClose={props.closeOnOverlayClick ? props.onClose : () => {}}
+      >
         <Overlay />
 
         <div className="fixed inset-0 overflow-hidden">

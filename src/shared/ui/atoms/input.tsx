@@ -13,9 +13,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   const { LeftIcon, invalid, className = '', ...rest } = props
   return (
     <div className="w-full h-12 relative">
-      {LeftIcon && (
-        <span className="absolute h-6 w-6 top-3 left-5">{LeftIcon}</span>
-      )}
+      {LeftIcon && <span className="absolute h-6 w-6 top-3 left-5">{LeftIcon}</span>}
       <input
         ref={ref}
         className={cn(

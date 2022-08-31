@@ -2,7 +2,7 @@ import { useUnit } from 'effector-react'
 import { useField, useForm } from 'effector-forms/scope'
 import { useCallback } from 'react'
 
-import { Button, IconButton, Input } from '~shared/ui'
+import { Button, IconButton, Input, InputMasked } from '~shared/ui'
 import { IconBack, IconPhone, IconUser } from '~shared/assets'
 
 import * as model from '../model'
@@ -80,7 +80,7 @@ const PhoneNumberField = () => {
   const { onChange, value, hasError, errorText } = useField(model.form.fields.phoneNumber)
   return (
     <div className="flex flex-col w-full space-y-1">
-      <Input
+      <InputMasked
         invalid={hasError()}
         type="tel"
         value={value ?? ''}

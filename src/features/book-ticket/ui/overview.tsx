@@ -57,8 +57,8 @@ const ConfirmExitModal = () => {
   ])
 
   return (
-    <Modal open={open} onClose={onClose} initialFocus={ref}>
-      <div className="w-80 px-4 py-6 flex flex-col space-y-3">
+    <Modal open={open} onClose={onClose} initialFocus={ref} className="max-w-sm">
+      <div className="w-80 sm:max-w-sm sm:w-ful sm:mx-auto l px-4 py-6 flex flex-col space-y-3">
         <h1 className="text-lg leading-5 font-semibold text-center">
           Вы уверены что хотите отменить покупку?
         </h1>
