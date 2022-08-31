@@ -8,7 +8,7 @@ type Props = {
 
 export const DayPicker = (props: Props) => {
   return (
-    <div className="flex items-center w-full overflow-x-auto hide-scrollbar">
+    <div className="flex w-full space-x-2 pr-4 overflow-x-auto hide-scrollbar">
       {props.days.map((day) => (
         <DayPickerItem
           key={day.dayOrDate}
@@ -33,7 +33,7 @@ const DayPickerItem = (props: DayPickerItemProps) => {
       onClick={props.onClick}
       type="button"
       className={cn(
-        'flex flex-col justify-center items-center px-2 py-2.5 space-y-1.5 rounded-xl cursor-pointer shrink-0 transition-colors mr-2 last-of-type:mr-4',
+        'flex flex-col justify-center items-center px-2 py-2.5 space-y-1.5 rounded-xl cursor-pointer shrink-0 transition-colors',
         {
           'bg-white bg-opacity-10': props.isActive,
         }
