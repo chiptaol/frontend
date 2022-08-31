@@ -8,7 +8,7 @@ type Props = {
 
 export const DayPicker = (props: Props) => {
   return (
-    <div className="flex w-full space-x-2 pr-4 overflow-x-auto hide-scrollbar">
+    <div className="flex w-full space-x-2 overflow-x-auto hide-scrollbar">
       {props.days.map((day) => (
         <DayPickerItem
           key={day.dayOrDate}
@@ -17,6 +17,7 @@ export const DayPicker = (props: Props) => {
           onClick={() => props.onDateSelect(day.formatted)}
         />
       ))}
+      <div className="!ml-4" />
     </div>
   )
 }
