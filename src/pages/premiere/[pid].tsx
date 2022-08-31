@@ -7,8 +7,8 @@ import type { GetStaticPaths, GetStaticProps } from 'next'
 import { MovieTabs } from '~widgets/movie-tabs'
 import { movie, MovieOverview } from '~entities/movie'
 import { FooterInfo } from '~shared/ui'
-import type { NextPageWithLayout } from '~shared/next'
 import { request } from '~shared/api'
+import type { NextPageWithLayout } from '~shared/next'
 
 const PremierePage: NextPageWithLayout = () => {
   return (

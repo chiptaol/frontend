@@ -3,7 +3,7 @@ import Image from 'next/image'
 
 import { imageSrc } from '~shared/config'
 import { ShowOnly } from '~shared/ui'
-import StarIcon from '~shared/assets/star.svg'
+import { IconStar } from '~shared/assets'
 
 import * as model from '../model'
 
@@ -19,30 +19,22 @@ export const MovieCard = () => {
       </div>
       <div className="flex flex-col space-y-2 z-20">
         <ShowOnly when={!!movie.is_premiere}>
-          <h3 className="text-xs leading-3 font-semibold text-yellow-500">
-            Премьера
-          </h3>
+          <h3 className="text-xs leading-3 font-semibold text-yellow-500">Премьера</h3>
         </ShowOnly>
         <ShowOnly when={!!movie.original_title}>
-          <h4 className="text-sm leading-4 font-semibold text-gray-400">
-            {movie.original_title!}
-          </h4>
+          <h4 className="text-sm leading-4 font-semibold text-gray-400">{movie.original_title!}</h4>
         </ShowOnly>
         <ShowOnly when={!!movie.title}>
           <h4 className="text-lg leading-4 font-semibold">{movie.title!}</h4>
         </ShowOnly>
         <ShowOnly when={!!movie.rating}>
           <div className="flex items-center space-x-1">
-            <StarIcon />
-            <span className="text-[10px] font-medium leading-[1]">
-              {movie.rating!.toFixed(1)}
-            </span>
+            <IconStar />
+            <span className="text-[10px] font-medium leading-[1]">{movie.rating!.toFixed(1)}</span>
           </div>
         </ShowOnly>
         <ShowOnly when={movie.genres.length > 0}>
-          <p className="text-xs leading-[14px] text-violet-100">
-            {movie.genres.join(', ')}
-          </p>
+          <p className="text-xs leading-[14px] text-violet-100">{movie.genres.join(', ')}</p>
         </ShowOnly>
         <ShowOnly when={!!movie.duration}>
           <p className="text-xs leading-[14px] text-violet-100">

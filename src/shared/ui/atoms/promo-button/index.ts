@@ -1,1 +1,0 @@
-export { PromoButton } from './ui'

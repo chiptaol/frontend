@@ -3,9 +3,7 @@ import { useRouter } from 'next/router'
 import cn from 'classnames'
 
 import { routesMap } from '~shared/routes'
-
-import MovieIcon from './movie.svg'
-import CinemaIcon from './cinema.svg'
+import { IconCinema, IconMovie } from '~shared/assets'
 
 export const Footer = () => {
   const location = useRouter().pathname
@@ -14,7 +12,7 @@ export const Footer = () => {
       <Link href={routesMap.home}>
         <a className="w-full">
           <FooterListItem
-            icon={MovieIcon}
+            icon={IconMovie}
             isActive={!location.includes('cinemas')}
             title="Премьеры"
           />
@@ -26,7 +24,7 @@ export const Footer = () => {
       <Link href={routesMap.cinemas}>
         <a className="w-full">
           <FooterListItem
-            icon={CinemaIcon}
+            icon={IconCinema}
             isActive={location.includes('cinemas')}
             title="Кинотеатры"
           />
@@ -50,13 +48,10 @@ const FooterListItem = (props: FooterListItemProps) => {
     >
       <span className="flex flex-col space-y-2.5 w-14 items-center mb-2">
         <hr
-          className={cn(
-            'transition-colors w-full h-[3px] rounded-[3px] border-none',
-            {
-              'bg-white': props.isActive,
-              'bg-transparent': !props.isActive,
-            }
-          )}
+          className={cn('transition-colors w-full h-[3px] rounded-[3px] border-none', {
+            'bg-white': props.isActive,
+            'bg-transparent': !props.isActive,
+          })}
         />
         <props.icon
           className={cn('transition-colors', {

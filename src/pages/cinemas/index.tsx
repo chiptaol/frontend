@@ -1,5 +1,4 @@
 import Head from 'next/head'
-
 import type { NextPage } from 'next'
 
 const CinemasPage: NextPage = () => {

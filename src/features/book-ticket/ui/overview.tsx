@@ -1,13 +1,13 @@
 import { useUnit } from 'effector-react'
+import { useRef } from 'react'
+import Link from 'next/link'
 
 import { SeanceBookedTicket } from '~entities/seance'
 import { Button, IconButton, Modal, PromoButton } from '~shared/ui'
-import BackSvg from '~shared/assets/back.svg'
+import { routesMap } from '~shared/routes'
+import { IconBack } from '~shared/assets'
 
 import * as model from '../model'
-import Link from 'next/link'
-import { routesMap } from '~shared/routes'
-import { useRef } from 'react'
 
 export const OverviewTicket = () => {
   const [openConfirmExitModal] = useUnit([model.confirmExitDisclosure.open])
@@ -19,7 +19,7 @@ export const OverviewTicket = () => {
           onClick={openConfirmExitModal}
           aria-label="close-drawer"
         >
-          <BackSvg />
+          <IconBack />
         </IconButton>
         <h1 className="text-xl leading-6 font-extrabold">Покупка билетов</h1>
       </div>

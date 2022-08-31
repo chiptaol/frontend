@@ -3,10 +3,7 @@ import { useField, useForm } from 'effector-forms/scope'
 import { useCallback } from 'react'
 
 import { Button, IconButton, Input } from '~shared/ui'
-import BackSvg from '~shared/assets/back.svg'
-
-import UserIcon from './user.svg'
-import PhoneIcon from './phone.svg'
+import { IconBack, IconPhone, IconUser } from '~shared/assets'
 
 import * as model from '../model'
 
@@ -20,16 +17,13 @@ export const FillUserData = () => {
           onClick={onClose}
           aria-label="close-drawer"
         >
-          <BackSvg />
+          <IconBack />
         </IconButton>
-        <h1 className="text-xl leading-6 font-extrabold">
-          Данные для получения билета
-        </h1>
+        <h1 className="text-xl leading-6 font-extrabold">Данные для получения билета</h1>
       </div>
       <div className="flex-grow p-4">
         <p className="text-base leading-5 font-medium mb-8">
-          Данная информация используется лишь для того, чтобы отправить Вам
-          купленные билеты
+          Данная информация используется лишь для того, чтобы отправить Вам купленные билеты
         </p>
         <Form />
       </div>
@@ -66,9 +60,7 @@ const Form = () => {
 }
 
 const EmailField = () => {
-  const { onChange, value, hasError, errorText } = useField(
-    model.form.fields.email
-  )
+  const { onChange, value, hasError, errorText } = useField(model.form.fields.email)
   return (
     <div className="flex flex-col w-full space-y-1">
       <Input
@@ -77,21 +69,15 @@ const EmailField = () => {
         onChange={(e) => onChange(e.currentTarget.value)}
         type="email"
         placeholder="Ваша почта"
-        LeftIcon={<UserIcon />}
+        LeftIcon={<IconUser />}
       />
-      {hasError() && (
-        <span className="ml-5 text-red-500 text-sm leading-4">
-          {errorText()}
-        </span>
-      )}
+      {hasError() && <span className="ml-5 text-red-500 text-sm leading-4">{errorText()}</span>}
     </div>
   )
 }
 
 const PhoneNumberField = () => {
-  const { onChange, value, hasError, errorText } = useField(
-    model.form.fields.phoneNumber
-  )
+  const { onChange, value, hasError, errorText } = useField(model.form.fields.phoneNumber)
   return (
     <div className="flex flex-col w-full space-y-1">
       <Input
@@ -100,13 +86,9 @@ const PhoneNumberField = () => {
         value={value ?? ''}
         onChange={(e) => onChange(e.currentTarget.value)}
         placeholder="Ваш номер телефона"
-        LeftIcon={<PhoneIcon />}
+        LeftIcon={<IconPhone />}
       />
-      {hasError() && (
-        <span className="ml-5 text-red-500 text-sm leading-4">
-          {errorText()}
-        </span>
-      )}
+      {hasError() && <span className="ml-5 text-red-500 text-sm leading-4">{errorText()}</span>}
     </div>
   )
 }

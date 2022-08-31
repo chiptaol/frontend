@@ -1,8 +1,8 @@
 import Head from 'next/head'
 import Link from 'next/link'
 
-import FilmIcon from '~shared/assets/film.svg'
 import { Button } from '~shared/ui'
+import { IconFilm } from '~shared/assets'
 
 const NotFoundPage = () => {
   return (
@@ -12,7 +12,7 @@ const NotFoundPage = () => {
         <div className="text-center flex w-full flex-col space-y-6 justify-center">
           <div className="flex items-center space-x-5 text-8xl font-semibold w-full justify-center">
             <h1>4</h1>
-            <FilmIcon />
+            <IconFilm />
             <h1>4</h1>
           </div>
           <div className="w-full">

@@ -1,8 +1,8 @@
 import Head from 'next/head'
 import Link from 'next/link'
 
-import FilmIcon from '~shared/assets/film.svg'
 import { Button } from '~shared/ui'
+import { IconFilm } from '~shared/assets'
 
 const ServerErrorPage = () => {
   return (
@@ -12,8 +12,8 @@ const ServerErrorPage = () => {
         <div className="text-center flex w-full flex-col space-y-6 justify-center">
           <div className="flex items-center text-8xl font-semibold w-full justify-center">
             <h1 className="mr-3">5</h1>
-            <FilmIcon />
-            <FilmIcon className="-scale-x-100 -translate-y-[0.65px]" />
+            <IconFilm />
+            <IconFilm className="-scale-x-100 -translate-y-[0.65px]" />
           </div>
           <div className="w-full">
             <h2 className="max-w-[220px] w-full mx-auto text-center font-extrabold text-xl mb-5">

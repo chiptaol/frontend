@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-import BackSvg from '~shared/assets/back.svg'
+import { IconBack } from '~shared/assets'
 
 import { IconButton } from '../atoms'
 
@@ -17,7 +17,7 @@ export const PageBackButton = ({ className = '', ...props }: Props) => {
           className={`p-2 hover:bg-white hover:bg-opacity-5 transition-colors ${className}`}
           aria-label="back-button"
         >
-          <BackSvg />
+          <IconBack />
         </IconButton>
       </a>
     </Link>
