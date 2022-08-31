@@ -1,5 +1,6 @@
 import { useList, useStoreMap, useUnit } from 'effector-react'
 import Image from 'next/image'
+
 import { imageSrc } from '~shared/config'
 import { convertToSum } from '~shared/lib/convert-to-sum'
 import { formatDate } from '~shared/lib/format-date'

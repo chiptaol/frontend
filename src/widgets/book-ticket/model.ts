@@ -1,6 +1,6 @@
 import { attach, sample } from 'effector'
 
-import { buyTicketModel } from '~features/buy-ticket'
+import { bookTicketModel } from '~features/book-ticket'
 import { selectSeatModel } from '~features/select-seat'
 import { seance } from '~entities/seance'
 import { types } from '~shared/types'
@@ -15,7 +15,7 @@ const bookTicketFx = attach({
 })
 
 sample({
-  clock: buyTicketModel.formValidated,
+  clock: bookTicketModel.formValidated,
   source: seance.model.$seance,
   filter: Boolean,
   fn: ({ seance }, fields) => ({ id: seance.id, ...fields }),

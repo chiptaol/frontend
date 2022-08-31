@@ -1,11 +1,12 @@
 import { useUnit } from 'effector-react'
+
 import { Drawer } from '~shared/ui'
 
 import * as model from '../model'
 import { FillUserData } from './fill-user-data'
 import { OverviewTicket } from './overview'
 
-export const BuyTicket = () => {
+export const BookTicket = () => {
   const [open, onClose, isBooked] = useUnit([
     model.disclosure.$open,
     model.disclosure.close,

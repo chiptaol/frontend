@@ -1,6 +1,7 @@
 import { Disclosure } from '@headlessui/react'
 import { useList, useUnit } from 'effector-react'
 
+import { bookTicketModel } from '~features/book-ticket'
 import { selectSeatModel } from '~features/select-seat'
 import { Button, ShowOnly } from '~shared/ui'
 import { types } from '~shared/types'
@@ -8,7 +9,6 @@ import { types } from '~shared/types'
 import XIcon from './x.svg'
 import ChevronIcon from './chevron-up.svg'
 import * as model from './model'
-import { BuyTicket, buyTicketModel } from '~features/buy-ticket'
 
 export const SeanceFooter = () => {
   const selectedSeats = useList(selectSeatModel.$selectedSeats, (seat) => (
@@ -22,7 +22,6 @@ export const SeanceFooter = () => {
       </Cart>
 
       <BuyButton />
-      <BuyTicket />
     </footer>
   )
 }
@@ -77,13 +76,13 @@ const Cart = ({ children }: { children: React.ReactNode }) => {
 }
 
 const BuyButton = () => {
-  const [price, isSeatSelected, buyTicket] = useUnit([
+  const [price, isSeatSelected, bookTicket] = useUnit([
     model.$seatsBeautifiedTotalPrice,
     model.$isSeatSelected,
-    buyTicketModel.disclosure.open,
+    bookTicketModel.disclosure.open,
   ])
   return (
-    <Button onClick={buyTicket} type="button" disabled={!isSeatSelected}>
+    <Button onClick={bookTicket} type="button" disabled={!isSeatSelected}>
       {isSeatSelected ? `Купить ${price} сум` : 'Выберите места'}
     </Button>
   )

@@ -1,1 +1,0 @@
-export { BuyTicket } from './ui'

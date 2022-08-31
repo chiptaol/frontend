@@ -1,1 +1,0 @@
-export { BookTicketWidget } from './ui'

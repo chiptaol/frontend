@@ -26,9 +26,9 @@ export const PremiereCard = ({ premiere }: Props) => {
         )}
       </div>
       <div className="flex flex-col space-y-2 flex-grow justify-center">
-        <h4 className="text-xs leading-[14px] font-semibold">
+        <h3 className="text-xs leading-[14px] font-semibold">
           {premiere.title}
-        </h4>
+        </h3>
         {genre && <p className="text-xs leading-4 text-violet-100">{genre}</p>}
       </div>
     </div>

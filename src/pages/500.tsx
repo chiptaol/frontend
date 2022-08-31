@@ -4,20 +4,20 @@ import Link from 'next/link'
 import FilmIcon from '~shared/assets/film.svg'
 import { Button } from '~shared/ui'
 
-const NotFoundPage = () => {
+const ServerErrorPage = () => {
   return (
     <>
       <Helmet />
       <div className="w-full h-full flex flex-col items-center justify-center space-y-16 max-w-xs mx-auto">
         <div className="text-center flex w-full flex-col space-y-6 justify-center">
-          <div className="flex items-center space-x-5 text-8xl font-semibold w-full justify-center">
-            <h1>4</h1>
+          <div className="flex items-center text-8xl font-semibold w-full justify-center">
+            <h1 className="mr-3">5</h1>
             <FilmIcon />
-            <h1>4</h1>
+            <FilmIcon className="-scale-x-100 -translate-y-[0.65px]" />
           </div>
           <div className="w-full">
             <h2 className="max-w-[220px] w-full mx-auto text-center font-extrabold text-xl mb-5">
-              Данная страница не найдена(
+              Возникла ошибка на сервере(
             </h2>
             <p className="mb-4 text-base font-medium">
               На сайте ведутся технические работы, мы стараемся сделать очень крутой сервис для вас.
@@ -38,7 +38,7 @@ const NotFoundPage = () => {
 const Helmet = () => {
   return (
     <Head>
-      <title>404 - Страница не найдена</title>
+      <title>500 - Ошибка сервера</title>
       <meta
         name="description"
         content="Надоело стоять в очередях или приходить, когда уже все билеты в кино распроданы? У нас можно купить билеты онлайн!"
@@ -51,10 +51,9 @@ const Helmet = () => {
         property="og:description"
         content="Надоело стоять в кассах или приходить, когда уже все билеты распроданы? Для этого не обязательно ехать в кинотеатр, Вы можете купить билеты онлайн у нас."
       />
-
       <link rel="icon" href="/logo.svg" />
     </Head>
   )
 }
 
-export default NotFoundPage
+export default ServerErrorPage
