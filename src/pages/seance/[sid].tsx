@@ -49,6 +49,7 @@ const Helmet = () => {
   return (
     <Head>
       <title>{title}</title>
+      <meta name="title" content={title} />
       <meta
         name="description"
         content="Надоело стоять в очередях или приходить, когда уже все билеты в кино распроданы? У нас можно купить билеты онлайн!"

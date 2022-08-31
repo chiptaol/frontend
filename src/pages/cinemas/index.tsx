@@ -7,6 +7,7 @@ const CinemasPage: NextPage = () => {
     <>
       <Head>
         <title>Кинотеатры</title>
+        <meta name="title" content="Кинотеатры" />
         <meta
           name="description"
           content="Надоело стоять в очередях или приходить, когда уже все билеты в кино распроданы? У нас можно купить билеты онлайн!"
