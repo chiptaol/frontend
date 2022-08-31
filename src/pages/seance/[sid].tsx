@@ -55,7 +55,6 @@ const Helmet = () => {
         content="Надоело стоять в очередях или приходить, когда уже все билеты в кино распроданы? У нас можно купить билеты онлайн!"
       />
       <meta property="og:title" content="Chiptaol - Онлайн-покупка билетов в кинотеатры Ташкента" />
-      <meta property="og:url" content="https://chiptaol.uz" />
       <meta property="og:locale" content="ru_RU" />
       <meta property="og:site_name" content="Chiptaol" />
       <meta
