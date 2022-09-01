@@ -22,7 +22,7 @@ export const Header = () => {
           билетов в кино
         </h1>
       </div>
-      <div className="flex items-center space-x-16 z-10">
+      <div className="items-center space-x-16 z-10 hidden xl:flex">
         <NavLink href={routesMap.home}>
           {({ active }) => (
             <a
