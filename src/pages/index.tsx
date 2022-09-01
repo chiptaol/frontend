@@ -13,14 +13,14 @@ const Home: NextPage = () => {
   return (
     <>
       <Helmet />
-      <div className="w-full">
+      <div className="w-full xl:flex xl:flex-col xl:h-full">
         <div className="flex flex-col space-y-5 w-full mb-10">
           <div className="max-w-7xl w-full mx-auto">
             <h1 className="text-2xl leading-7 font-extrabold pl-4">Премьеры недели</h1>
           </div>
           <PremieresSlider />
         </div>
-        <div className="flex flex-col max-w-7xl w-full space-y-4 mx-auto xl:mb-24">
+        <div className="flex flex-col max-w-7xl w-full space-y-4 mx-auto xl:mb-24 xl:flex-grow">
           <h1 className="text-2xl leading-7 font-extrabold ml-4">В кинотеатрах</h1>
           <div className="flex flex-col space-y-6 w-full">
             <PremiereDayPicker />

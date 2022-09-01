@@ -1,2 +1,5 @@
 export { CinemaSeat } from './seat'
 export { CinemaScreen } from './screen'
+export { CinemaListItem } from './list-item'
+export { CinemaCard } from './card'
+export { CinemaOverview } from './overview'

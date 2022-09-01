@@ -1,0 +1,1 @@
+export { NearestCinemasWidget } from './ui'

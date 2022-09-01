@@ -98,3 +98,49 @@ export const book = typed.obj({
     })
   ),
 })
+
+export const fetchCinemasRequestOk = typed.obj({
+  data: typed.arr(
+    typed.obj({
+      id: typed.num,
+      title: typed.str,
+      address: typed.str,
+      reference_point: typed.str.maybe,
+      logo: typed.obj({
+        id: typed.str,
+        path: typed.str,
+      }).maybe,
+    })
+  ),
+})
+
+export const fetchNearestCinemasRequestOk = typed.obj({
+  data: typed.array(
+    typed.obj({
+      id: typed.num,
+      title: typed.str,
+      address: typed.str,
+      distance: typed.num.maybe,
+      logo: typed.obj({
+        id: typed.str,
+        path: typed.str,
+      }).maybe,
+    })
+  ),
+})
+
+export const fetchCinemaRequestOk = typed.obj({
+  data: typed.obj({
+    id: typed.num,
+    title: typed.str,
+    address: typed.str,
+    logo: typed.obj({
+      id: typed.str,
+      path: typed.str,
+    }).maybe,
+    reference_point: typed.str.maybe,
+    longitude: typed.num.maybe,
+    latitude: typed.num.maybe,
+    phone: typed.str,
+  }),
+})

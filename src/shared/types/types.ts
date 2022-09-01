@@ -95,3 +95,27 @@ export type CancelTicketBookRequestDone = {
   answer: typed.Get<typeof contract.cancelTicketBookRequestOk>
 }
 export type CancelTicketBookRequestFail = GenericErrors
+
+export type FetchCinemasRequestDone = {
+  status: 'ok'
+  answer: typed.Get<typeof contract.fetchCinemasRequestOk>
+}
+export type FetchCinemasRequestFail = GenericErrors
+
+export type FetchNearestCinemasRequest = {
+  query: string
+}
+export type FetchNearestCinemasRequestDone = {
+  status: 'ok'
+  answer: typed.Get<typeof contract.fetchNearestCinemasRequestOk>
+}
+export type FetchNearestCinemasRequestFail = GenericErrors
+
+export type FetchCinemaRequest = {
+  id: number
+}
+export type FetchCinemaRequestDone = {
+  status: 'ok'
+  answer: typed.Get<typeof contract.fetchCinemaRequestOk>
+}
+export type FetchCinemaRequestFail = GenericErrors
