@@ -11,7 +11,7 @@ export const PremiereCard = ({ premiere }: Props) => {
   const genre = premiere.genres[0] ?? null
   return (
     <div className="flex flex-col space-y-2.5 h-full justify-between">
-      <div className="w-full relative h-36 xs:h-48 sm:h-60 rounded-xl overflow-hidden">
+      <div className="w-full relative h-40 xs:h-48 sm:h-60 md:h-56 xl:h-60 rounded-xl overflow-hidden">
         <Image
           layout="fill"
           className="object-cover object-top absolute inset-0"
@@ -26,9 +26,7 @@ export const PremiereCard = ({ premiere }: Props) => {
         )}
       </div>
       <div className="flex flex-col space-y-2 flex-grow justify-center">
-        <h3 className="text-xs leading-[14px] font-semibold">
-          {premiere.title}
-        </h3>
+        <h3 className="text-xs leading-[14px] font-semibold">{premiere.title}</h3>
         {genre && <p className="text-xs leading-4 text-violet-100">{genre}</p>}
       </div>
     </div>

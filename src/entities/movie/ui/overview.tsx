@@ -11,12 +11,9 @@ import * as model from '../model'
 export const MovieOverview = () => {
   return (
     <div className="relative mb-8">
-      <PageBackButton
-        className="absolute z-20 top-3 left-2"
-        href={routesMap.home}
-      />
-      <div className="relative h-52 xs:h-64">
-        <div className="absolute inset-0 bg-header z-10" />
+      <PageBackButton className="absolute z-20 top-3 left-2" href={routesMap.home} />
+      <div className="relative h-52 xs:h-64 md:h-72 lg:h-80">
+        <div className="absolute inset-0 bg-header xl:bg-backdrop z-10" />
         <Backdrop />
       </div>
       <div className="-mt-20 px-4 z-20">
@@ -27,10 +24,7 @@ export const MovieOverview = () => {
 }
 
 const Backdrop = () => {
-  const movieBackdropPath = useStoreMap(
-    model.$movie,
-    (movie) => movie?.backdrop_path ?? null
-  )
+  const movieBackdropPath = useStoreMap(model.$movie, (movie) => movie?.backdrop_path ?? null)
 
   return (
     <ShowOnly when={!!movieBackdropPath}>

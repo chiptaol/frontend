@@ -26,7 +26,7 @@ export const MovieTabs = () => {
         <TabItem>Расписание</TabItem>
         <TabItem>Описание</TabItem>
       </Tab.List>
-      <Tab.Panels className="px-4 pb-5">
+      <Tab.Panels className="px-4 pb-5 max-w-5xl">
         <Tab.Panel className="flex flex-col space-y-6">
           <SeanceDayPicker />
           <SeancesList />
@@ -51,12 +51,9 @@ const TabItem = ({ children }: { children: React.ReactNode }) => {
   return (
     <Tab
       className={({ selected }) =>
-        cn(
-          'text-2xl leading-7 font-extrabold transition-opacity focus:outline-none text-white',
-          {
-            'opacity-50': !selected,
-          }
-        )
+        cn('text-2xl leading-7 font-extrabold transition-opacity focus:outline-none text-white', {
+          'opacity-50': !selected,
+        })
       }
     >
       {children}

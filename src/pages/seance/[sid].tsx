@@ -20,7 +20,7 @@ const SeancePage: NextPageWithLayout = () => {
   return (
     <>
       <Helmet />
-      <div className="w-full h-full flex flex-col relative">
+      <div className="max-w-7xl w-full h-full flex flex-col relative mx-auto">
         <SeanceHeader />
         <SeanceLegend />
         <CinemaScreen />

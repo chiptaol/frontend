@@ -14,9 +14,7 @@ body {
 }
 
 #__next {
-  max-width: 640px;
   width: 100%;
-  margin: 0 auto;
   background-color: #1e1f29;
   color: white;
 }

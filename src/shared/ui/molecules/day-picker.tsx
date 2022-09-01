@@ -8,15 +8,17 @@ type Props = {
 
 export const DayPicker = (props: Props) => {
   return (
-    <div className="flex w-full space-x-2 overflow-x-auto hide-scrollbar pr-4">
-      {props.days.map((day) => (
-        <DayPickerItem
-          key={day.dayOrDate}
-          day={day}
-          isActive={props.selectedDate === day.formatted}
-          onClick={() => props.onDateSelect(day.formatted)}
-        />
-      ))}
+    <div className="w-full overflow-x-auto overflow-y-hidden hide-scrollbar">
+      <div className="flex flex-row box-border min-w-full space-x-2 px-4 float-left">
+        {props.days.map((day) => (
+          <DayPickerItem
+            key={day.dayOrDate}
+            day={day}
+            isActive={props.selectedDate === day.formatted}
+            onClick={() => props.onDateSelect(day.formatted)}
+          />
+        ))}
+      </div>
     </div>
   )
 }

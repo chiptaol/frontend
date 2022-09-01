@@ -18,7 +18,7 @@ export const PremieresSlider = () => {
   ])
 
   return (
-    <div ref={emblaRef} className="embla overflow-hidden">
+    <div ref={emblaRef} className="embla overflow-hidden max-w-7xl w-full mx-auto">
       <div className="embla__container grid grid-flow-col auto-cols-[80%]">
         {premieres.map((premiere) => (
           <div className="embla__slide mr-4" key={premiere.id}>
@@ -26,7 +26,7 @@ export const PremieresSlider = () => {
               <a>
                 <div
                   className={cn(
-                    'relative w-full h-52 sm:h-72 flex items-end overflow-hidden rounded-lg'
+                    'relative w-full h-52 sm:h-72 md:h-80 lg:h-96 flex items-end overflow-hidden rounded-lg'
                   )}
                 >
                   <Image

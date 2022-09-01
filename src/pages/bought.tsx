@@ -10,9 +10,9 @@ const BoughtPage: NextPageWithLayout = () => {
   return (
     <>
       <Helmet />
-      <div className="w-full h-full flex flex-col space-y-16 px-4 py-6">
+      <div className="max-w-7xl w-full h-full flex flex-col space-y-16 px-4 py-6 mx-auto">
         <PageBackButton href={routesMap.home} className="mb" />
-        <div className="flex-grow w-full text-center">
+        <div className="max-w-md flex-grow w-full text-center mx-auto">
           <Image width={125} height={160} src="/bear.png" alt="bear" className="mb-8" />
           <h1 className="text-xl font-extrabold mb-6">Спасибо что прошли бета-тестирование!</h1>
           <p className="text-base font-medium mb-5">

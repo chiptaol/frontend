@@ -43,8 +43,7 @@ type ButtonProps = NativeButtonProps & {
 const ButtonTheme: Record<ButtonTheme, Theme> = {
   primary: {
     solid: 'text-black-500 bg-yellow-500 focus:ring-yellow-300',
-    outline:
-      'text-blue-500 border-2 border-blue-500 disabled:opacity-50 focus:ring-blue-300',
+    outline: 'text-blue-500 border-2 border-blue-500 disabled:opacity-50 focus:ring-blue-300',
   },
   secondary: {
     solid: 'text-black-500 bg-blue-50 focus:ring-blue-200',
@@ -52,8 +51,7 @@ const ButtonTheme: Record<ButtonTheme, Theme> = {
   },
   danger: {
     solid: 'text-white bg-red-500 focus:ring-red-300',
-    outline:
-      'text-red-500 border-2 border-red-500 disabled:opacity-50 focus:ring-red-300',
+    outline: 'text-red-500 border-2 border-red-500 disabled:opacity-50 focus:ring-red-300',
   },
 }
 
@@ -76,7 +74,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
     <button
       ref={ref}
       className={cn(
-        'transition-all text-base leading-3 w-full font-bold py-5 rounded-xl flex justify-center items-center hover:bg-opacity-80 disabled:bg-opacity-50 focus:outline-none focus:ring focus-visible:ring',
+        'transition-all text-base leading-3 w-full font-bold h-14 rounded-xl flex justify-center items-center hover:bg-opacity-80 disabled:bg-opacity-50 focus:outline-none focus:ring focus-visible:ring',
         palette,
         className,
         {

@@ -1,7 +1,7 @@
 import { forwardRef } from 'react'
 import cn from 'classnames'
 
-import { Spinner } from './spinner'
+import { Spinner } from '../atoms/spinner'
 import { IconApelsin, IconClick, IconPayme } from '~shared/assets'
 
 type NativeButtonProps = Omit<

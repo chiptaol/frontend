@@ -20,7 +20,7 @@ export const HallScheme = () => {
 
   useEffect(() => {
     const containerWidth = containerRef.current?.clientWidth
-    if (containerWidth) {
+    if (containerWidth && containerWidth <= 640) {
       setScale(+((containerWidth - 50) / width).toFixed(1))
     }
   }, [width, setScale])
@@ -43,9 +43,7 @@ export const HallScheme = () => {
 }
 
 const Seats = () => {
-  const seats = useList(model.$seats, (seat) => (
-    <Seat key={seat.id} seat={seat} />
-  ))
+  const seats = useList(model.$seats, (seat) => <Seat key={seat.id} seat={seat} />)
 
   const [height, width, scale] = useUnit([
     model.$scaledHeight,

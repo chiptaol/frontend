@@ -8,7 +8,7 @@ import { IconCinema, IconMovie } from '~shared/assets'
 export const Footer = () => {
   const location = useRouter().pathname
   return (
-    <footer className="w-full flex flex-row bg-[rgba(24, 28, 41, 0.5)] backdrop-blur-2xl">
+    <footer className="w-full flex flex-row bg-[rgba(24, 28, 41, 0.5)] backdrop-blur-2xl xl:hidden">
       <Link href={routesMap.home}>
         <a className="w-full">
           <FooterListItem

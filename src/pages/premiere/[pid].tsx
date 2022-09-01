@@ -12,7 +12,7 @@ import type { NextPageWithLayout } from '~shared/next'
 
 const PremierePage: NextPageWithLayout = () => {
   return (
-    <div className="flex flex-col w-full h-full overflow-y-auto">
+    <div className="flex flex-col w-full h-full overflow-y-auto max-w-7xl mx-auto">
       <Helmet />
       <main className="flex-grow">
         <MovieOverview />

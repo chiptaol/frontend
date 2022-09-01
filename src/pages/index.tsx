@@ -7,6 +7,7 @@ import type { GetServerSideProps, NextPage } from 'next'
 import { PremiereDayPicker, premiereDayPickerModel } from '~features/premiere-day-picker'
 import { premiere, PremiereCard, PremieresSlider } from '~entities/premiere'
 import { routesMap } from '~shared/routes'
+import { FooterInfo } from '~shared/ui'
 
 const Home: NextPage = () => {
   return (
@@ -14,16 +15,19 @@ const Home: NextPage = () => {
       <Helmet />
       <div className="w-full">
         <div className="flex flex-col space-y-5 w-full mb-10">
-          <h1 className="text-2xl leading-7 font-extrabold pl-4">Премьеры недели</h1>
+          <div className="max-w-7xl w-full mx-auto">
+            <h1 className="text-2xl leading-7 font-extrabold pl-4">Премьеры недели</h1>
+          </div>
           <PremieresSlider />
         </div>
-        <div className="flex flex-col w-full pl-4 space-y-4">
-          <h1 className="text-2xl leading-7 font-extrabold">В кинотеатрах</h1>
+        <div className="flex flex-col max-w-7xl w-full space-y-4 mx-auto xl:mb-24">
+          <h1 className="text-2xl leading-7 font-extrabold ml-4">В кинотеатрах</h1>
           <div className="flex flex-col space-y-6 w-full">
             <PremiereDayPicker />
             <PremieresList />
           </div>
         </div>
+        <FooterInfo className="hidden xl:block" />
       </div>
     </>
   )
@@ -59,7 +63,9 @@ const PremieresList = () => {
   ))
 
   return (
-    <div className="grid grid-cols-3 gap-3 xs:gap-4 sm:grid-cols-4 sm:gap-5 pr-4">{premieres}</div>
+    <div className="grid grid-cols-3 gap-3 xs:gap-4 sm:grid-cols-4 sm:gap-5 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 px-4">
+      {premieres}
+    </div>
   )
 }
 

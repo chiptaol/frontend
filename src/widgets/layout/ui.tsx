@@ -1,4 +1,4 @@
-import { Footer, Header } from '~shared/ui'
+import { Footer, FooterInfo, Header } from '~shared/ui'
 
 type Props = {
   children: React.ReactNode
