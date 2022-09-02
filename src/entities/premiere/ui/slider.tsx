@@ -17,6 +17,8 @@ export const PremieresSlider = () => {
     Autoplay({ stopOnInteraction: false, stopOnMouseEnter: true }),
   ])
 
+  if (premieres.length === 0) return null
+
   return (
     <div ref={emblaRef} className="embla overflow-hidden max-w-7xl w-full mx-auto">
       <div className="embla__container grid grid-flow-col auto-cols-[80%]">

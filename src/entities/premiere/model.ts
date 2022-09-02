@@ -21,9 +21,7 @@ export const fetchPremieresFx = attach({
   }),
 })
 
-$actualPremieres.on(fetchActualPremieresFx.doneData, (_, { answer }) => [
-  ...answer.data,
-])
-$premieres.on(fetchPremieresFx.doneData, (_, { answer }) => [
-  ...answer.premieres,
-])
+$actualPremieres.on(fetchActualPremieresFx.doneData, (_, { answer }) => [...answer.data])
+$premieres.on(fetchPremieresFx.doneData, (_, { answer }) => [...answer.premieres])
+
+fetchPremieresFx.finally.watch(console.log)

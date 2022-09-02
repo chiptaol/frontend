@@ -1,6 +1,6 @@
 import { allSettled, fork, serialize, attach, createEvent, sample } from 'effector'
 import Head from 'next/head'
-import { useList } from 'effector-react'
+import { useList, useUnit } from 'effector-react'
 import Link from 'next/link'
 import type { GetServerSideProps, NextPage } from 'next'
 
