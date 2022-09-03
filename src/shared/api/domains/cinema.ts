@@ -58,3 +58,21 @@ export const fetchCinemaRequestFx = createEffect<
     })
   },
 })
+
+export const fetchCinemaSeancesRequestFx = createEffect<
+  types.FetchCinemaSeancesRequest,
+  types.FetchCinemaSeancesRequestDone,
+  types.FetchCinemaSeancesRequestFail
+>({
+  async handler({ id, query }) {
+    const name = 'fetchCinemaSeancesRequestFx.body'
+    const response = await authenticatedRequestFx({
+      path: `cinemas/${id}/seances${query}`,
+      method: 'GET',
+    })
+
+    return parseByStatus(name, response, {
+      200: ['ok', contract.fetchCinemaSeancesRequestOk],
+    })
+  },
+})

@@ -4,6 +4,7 @@ import Head from 'next/head'
 import { useMemo } from 'react'
 import type { GetStaticPaths, GetStaticProps } from 'next'
 
+import { CinemaSeancesWidget } from '~widgets/cinema-seances'
 import { cinema, CinemaOverview } from '~entities/cinema'
 import { request } from '~shared/api'
 import { FooterInfo, PageBackButton } from '~shared/ui'
@@ -21,6 +22,7 @@ const CinemaPage: NextPageWithLayout = () => {
             <h1 className="text-xl leading-6 font-extrabold">Информация о кинотеатре</h1>
           </div>
           <CinemaOverview />
+          <CinemaSeancesWidget />
         </main>
         <FooterInfo />
       </div>

@@ -13,9 +13,10 @@ export const NearestCinemasWidget = () => {
     locationRetrieved: model.locationRetrieved,
     locationRetrieveDenied: model.locationRetrieveDenied,
   })
-  const [isDenied, isLocationPermittedOrDenied] = useUnit([
+  const [isDenied, isLocationPermittedOrDenied, status] = useUnit([
     model.$isDenied,
     model.$isLocationPermittedOrDenied,
+    model.$status,
   ])
   useEffect(() => {
     if (!isLocationPermittedOrDenied) {
@@ -36,7 +37,12 @@ export const NearestCinemasWidget = () => {
   return (
     <div className="flex flex-col space-y-6">
       <h1 className="pl-4 text-2xl leading-7 font-extrabold">Кинотеатры рядом</h1>
-      <CinemasList />
+      {status === 'ready' && <CinemasList />}
+      {status === 'empty' && (
+        <h2 className="text-lg font-semibold leading-5 text-center py-2 px-8">
+          Похоже что поблизости нет кинотеатров(
+        </h2>
+      )}
     </div>
   )
 }

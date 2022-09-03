@@ -35,7 +35,7 @@ export const PremieresSlider = () => {
                     priority
                     layout="fill"
                     quality={100}
-                    className="absolute inset-0 object-cover"
+                    className="absolute inset-0 object-cover object-top"
                     src={imageSrc(premiere.backdrop_path)}
                     alt="slider_image"
                   />

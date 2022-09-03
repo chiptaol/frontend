@@ -1,0 +1,1 @@
+export { CinemaSeancesWidget } from './ui'

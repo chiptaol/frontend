@@ -79,7 +79,7 @@ export const seance = typed.obj({
 })
 
 export const book = typed.obj({
-  id: typed.num,
+  id: typed.str,
   cinema_title: typed.str,
   hall_title: typed.str,
   movie: typed.obj({
@@ -97,50 +97,4 @@ export const book = typed.obj({
       price: typed.num,
     })
   ),
-})
-
-export const fetchCinemasRequestOk = typed.obj({
-  data: typed.arr(
-    typed.obj({
-      id: typed.num,
-      title: typed.str,
-      address: typed.str,
-      reference_point: typed.str.maybe,
-      logo: typed.obj({
-        id: typed.str,
-        path: typed.str,
-      }).maybe,
-    })
-  ),
-})
-
-export const fetchNearestCinemasRequestOk = typed.obj({
-  data: typed.array(
-    typed.obj({
-      id: typed.num,
-      title: typed.str,
-      address: typed.str,
-      distance: typed.num.maybe,
-      logo: typed.obj({
-        id: typed.str,
-        path: typed.str,
-      }).maybe,
-    })
-  ),
-})
-
-export const fetchCinemaRequestOk = typed.obj({
-  data: typed.obj({
-    id: typed.num,
-    title: typed.str,
-    address: typed.str,
-    logo: typed.obj({
-      id: typed.str,
-      path: typed.str,
-    }).maybe,
-    reference_point: typed.str.maybe,
-    longitude: typed.num.maybe,
-    latitude: typed.num.maybe,
-    phone: typed.str,
-  }),
 })

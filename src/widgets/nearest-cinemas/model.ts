@@ -1,4 +1,4 @@
-import { createEvent, merge, restore, sample } from 'effector'
+import { combine, createEvent, merge, restore, sample } from 'effector'
 
 import { cinema } from '~entities/cinema'
 
@@ -15,6 +15,17 @@ export const $isDenied = restore(
 export const $isLocationPermittedOrDenied = restore(
   locationPermissionChanged.map(() => true),
   false
+)
+
+export const $status = combine(
+  $isLocationPermittedOrDenied,
+  $isLoading,
+  cinema.model.$nearestCinemas,
+  (is, pending, cinemas) => {
+    if (pending) return 'pending'
+    if (is && cinemas.length === 0) return 'empty'
+    return 'ready'
+  }
 )
 
 sample({
