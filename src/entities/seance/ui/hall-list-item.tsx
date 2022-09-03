@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 
 import { convertToSum } from '~shared/lib/convert-to-sum'
 import { formatDate } from '~shared/lib/format-date'
@@ -16,9 +17,7 @@ export const SeanceHallListItem = (props: Props) => {
       <SeanceLinkWrapper id={firstSeanceId}>
         <div className="w-full flex items-center justify-between mb-3">
           <div className="flex items-center space-x-3">
-            <h5 className="text-base leading-5 font-bold">
-              {props.seance.title}
-            </h5>
+            <h5 className="text-base leading-5 font-bold">{props.seance.title}</h5>
             <span className="text-violet-100 text-base leading-5 font-medium">
               {props.seance.formats.join(', ')}
             </span>
@@ -42,11 +41,10 @@ export const SeanceHallListItem = (props: Props) => {
   )
 }
 
-const SeanceLinkItem = (props: {
-  seance: Props['seance']['seances'][number]
-}) => {
+const SeanceLinkItem = (props: { seance: Props['seance']['seances'][number] }) => {
+  const { asPath } = useRouter()
   return (
-    <Link href={routesMap.seance(props.seance.id)}>
+    <Link href={{ pathname: routesMap.seance(props.seance.id), query: { from: asPath } }}>
       <a className="px-4 py-3 rounded text-black-500 text-base font-medium leading-5 bg-yellow-500">
         {formatDate(props.seance.start_date_time, 'HH:mm')}
       </a>
@@ -54,10 +52,7 @@ const SeanceLinkItem = (props: {
   )
 }
 
-const SeanceLinkWrapper = (props: {
-  id: number
-  children: React.ReactNode
-}) => {
+const SeanceLinkWrapper = (props: { id: number; children: React.ReactNode }) => {
   return (
     <Link href={routesMap.seance(props.id)}>
       <a>{props.children}</a>
