@@ -30,7 +30,7 @@ const Backdrop = () => {
     <ShowOnly when={!!movieBackdropPath}>
       <Image
         layout="fill"
-        className="object-cover object-top inset-0 absolute xl:object-center"
+        className="object-cover object-top inset-0 absolute"
         src={imageSrc(movieBackdropPath!)}
         alt=""
       />
