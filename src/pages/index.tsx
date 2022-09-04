@@ -44,6 +44,8 @@ const Helmet = () => {
       <meta property="og:title" content="Chiptaol - Онлайн-покупка билетов в кинотеатры Ташкента" />
       <meta property="og:locale" content="ru_RU" />
       <meta property="og:site_name" content="Chiptaol" />
+      <meta property="og:url" content="https://chiptaol.uz" />
+      <meta prefix="og: https://chiptaol.uz/ns#" />
       <meta property="og:image" content="https://chiptaol.uz/og-image.png" />
       <meta property="og:image:width" content="1280" />
       <meta property="og:image:height" content="730" />
