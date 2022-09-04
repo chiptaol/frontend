@@ -46,7 +46,7 @@ const Helmet = () => {
       <meta property="og:site_name" content="Chiptaol" />
       <meta
         property="og:image"
-        content="https://www.freepik.com/premium-photo/astronaut-outer-open-space-planet-earth-stars-provide-background-erforming-space-planet-earth-sunrise-sunset-our-home-iss-elements-this-image-furnished-by-nasa_22483456.htm"
+        content="https://commons.wikimedia.org/wiki/File:Cheetah_Feb09_02.jpg"
       />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="800" />
