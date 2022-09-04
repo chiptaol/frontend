@@ -44,7 +44,12 @@ const Helmet = () => {
       <meta property="og:title" content="Chiptaol - Онлайн-покупка билетов в кинотеатры Ташкента" />
       <meta property="og:locale" content="ru_RU" />
       <meta property="og:site_name" content="Chiptaol" />
-      <meta property="og:image" content="./og-image.png" />
+      <meta
+        property="og:image"
+        content="https://www.freepik.com/premium-photo/astronaut-outer-open-space-planet-earth-stars-provide-background-erforming-space-planet-earth-sunrise-sunset-our-home-iss-elements-this-image-furnished-by-nasa_22483456.htm"
+      />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="800" />
       <meta
         property="og:description"
         content="Надоело стоять в кассах или приходить, когда уже все билеты распроданы? Для этого не обязательно ехать в кинотеатр, Вы можете купить билеты онлайн у нас."
