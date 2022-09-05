@@ -1,14 +1,14 @@
 import { useStoreMap } from 'effector-react'
 import { allSettled, fork, serialize } from 'effector'
-import Head from 'next/head'
 import { useMemo } from 'react'
 import type { GetStaticPaths, GetStaticProps } from 'next'
 
 import { CinemaSeancesWidget } from '~widgets/cinema-seances'
 import { cinema, CinemaOverview } from '~entities/cinema'
 import { request } from '~shared/api'
-import { FooterInfo, PageBackButton } from '~shared/ui'
+import { FooterInfo, Head, PageBackButton } from '~shared/ui'
 import { routesMap } from '~shared/routes'
+import { META } from '~shared/config'
 import type { NextPageWithLayout } from '~shared/next'
 
 const CinemaPage: NextPageWithLayout = () => {
@@ -40,23 +40,7 @@ const Helmet = () => {
     return 'Купить билеты онлайн в кинотеатре Ташкента.'
   }, [cinemaTitle])
 
-  return (
-    <Head>
-      <title>{title}</title>
-      <meta
-        name="description"
-        content="Надоело стоять в очередях или приходить, когда уже все билеты в кино распроданы? У нас можно купить билеты онлайн!"
-      />
-      <meta property="og:title" content={title} />
-      <meta property="og:locale" content="ru_RU" />
-      <meta property="og:site_name" content="Chiptaol" />
-      <meta
-        property="og:description"
-        content="Надоело стоять в кассах или приходить, когда уже все билеты распроданы? Для этого не обязательно ехать в кинотеатр, Вы можете купить билеты онлайн у нас."
-      />
-      <link rel="icon" href="/logo.svg" />
-    </Head>
-  )
+  return <Head title={title} {...META.cinema} />
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {

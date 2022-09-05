@@ -4,13 +4,12 @@ import { useList, useUnit } from 'effector-react'
 import { bookTicketModel } from '~features/book-ticket'
 import { selectSeatModel } from '~features/select-seat'
 import { Button, ShowOnly } from '~shared/ui'
+import { IconUp, IconX } from '~shared/assets'
 import { types } from '~shared/types'
 
-import XIcon from './x.svg'
-import ChevronIcon from './chevron-up.svg'
 import * as model from './model'
 
-export const SeanceFooter = () => {
+export const SeanceFooterWidget = () => {
   const selectedSeats = useList(selectSeatModel.$selectedSeats, (seat) => (
     <SelectedSeat key={seat.id} seat={seat} />
   ))
@@ -38,26 +37,21 @@ const SelectedSeat = ({ seat }: { seat: types.Seance['seats'][number] }) => {
       <span className="text-white text-xs leading-[14px]">
         {seat.row} ряд, {seat.place} место
       </span>
-      <XIcon className="fill-violet-100" />
+      <IconX className="fill-violet-100" />
     </button>
   )
 }
 
 const Cart = ({ children }: { children: React.ReactNode }) => {
-  const [amount, isSeatSelected] = useUnit([
-    model.$seatsCount,
-    model.$isSeatSelected,
-  ])
+  const [amount, isSeatSelected] = useUnit([model.$seatsCount, model.$isSeatSelected])
   return (
     <ShowOnly when={isSeatSelected}>
       <Disclosure>
         <Disclosure.Button className="w-full flex justify-between items-center">
           {({ open }) => (
             <>
-              <p className="text-base leading-5 font-bold">
-                Билетов выбрано: {amount} шт.
-              </p>
-              <ChevronIcon
+              <p className="text-base leading-5 font-bold">Билетов выбрано: {amount} шт.</p>
+              <IconUp
                 className={
                   open
                     ? 'rotate-180 transition-transform fill-violet-100'

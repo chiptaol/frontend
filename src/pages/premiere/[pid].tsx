@@ -1,13 +1,13 @@
 import { allSettled, fork, serialize } from 'effector'
 import { useStoreMap } from 'effector-react'
 import { useMemo } from 'react'
-import Head from 'next/head'
 import type { GetStaticPaths, GetStaticProps } from 'next'
 
 import { MovieTabs } from '~widgets/movie-tabs'
 import { movie, MovieOverview } from '~entities/movie'
-import { FooterInfo } from '~shared/ui'
+import { FooterInfo, Head } from '~shared/ui'
 import { request } from '~shared/api'
+import { META } from '~shared/config'
 import type { NextPageWithLayout } from '~shared/next'
 
 const PremierePage: NextPageWithLayout = () => {
@@ -32,23 +32,7 @@ const Helmet = () => {
     return 'Купить билет на фильм в Ташкенте, онлайн.'
   }, [movieName])
 
-  return (
-    <Head>
-      <title>{title}</title>
-      <meta
-        name="description"
-        content="Надоело стоять в очередях или приходить, когда уже все билеты в кино распроданы? У нас можно купить билеты онлайн!"
-      />
-      <meta property="og:title" content={title} />
-      <meta property="og:locale" content="ru_RU" />
-      <meta property="og:site_name" content="Chiptaol" />
-      <meta
-        property="og:description"
-        content="Надоело стоять в кассах или приходить, когда уже все билеты распроданы? Для этого не обязательно ехать в кинотеатр, Вы можете купить билеты онлайн у нас."
-      />
-      <link rel="icon" href="/logo.svg" />
-    </Head>
-  )
+  return <Head title={title} {...META.premiere} />
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {

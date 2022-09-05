@@ -7,7 +7,7 @@ import { PageBackButton } from '~shared/ui'
 
 import * as model from './model'
 
-export const SeanceHeader = () => {
+export const SeanceHeaderWidget = () => {
   const { cinemaTitle, movieName, startDate } = useUnit({
     movieName: model.$movieName,
     cinemaTitle: model.$cinemaTitle,

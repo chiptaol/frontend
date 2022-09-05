@@ -1,1 +1,1 @@
-export { SeanceHeader } from './ui'
+export { SeanceHeaderWidget } from './ui'

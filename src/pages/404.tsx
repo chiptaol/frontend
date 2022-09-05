@@ -1,13 +1,13 @@
-import Head from 'next/head'
 import Link from 'next/link'
 
-import { Button } from '~shared/ui'
+import { Button, Head } from '~shared/ui'
 import { IconFilm } from '~shared/assets'
+import { META } from '~shared/config'
 
 const NotFoundPage = () => {
   return (
     <>
-      <Helmet />
+      <Head {...META[404]} />
       <div className="w-full h-full flex flex-col items-center justify-center space-y-16 max-w-xs mx-auto">
         <div className="text-center flex w-full flex-col space-y-6 justify-center">
           <div className="flex items-center space-x-5 text-8xl font-semibold w-full justify-center">
@@ -35,25 +35,25 @@ const NotFoundPage = () => {
   )
 }
 
-const Helmet = () => {
-  return (
-    <Head>
-      <title>404 - Страница не найдена</title>
-      <meta
-        name="description"
-        content="Надоело стоять в очередях или приходить, когда уже все билеты в кино распроданы? У нас можно купить билеты онлайн!"
-      />
-      <meta property="og:title" content="Chiptaol - Онлайн-покупка билетов в кинотеатры Ташкента" />
-      <meta property="og:locale" content="ru_RU" />
-      <meta property="og:site_name" content="Chiptaol" />
-      <meta
-        property="og:description"
-        content="Надоело стоять в кассах или приходить, когда уже все билеты распроданы? Для этого не обязательно ехать в кинотеатр, Вы можете купить билеты онлайн у нас."
-      />
+// const Helmet = () => {
+//   return (
+//     <Head>
+//       <title>404 - Страница не найдена</title>
+//       <meta
+//         name="description"
+//         content="Надоело стоять в очередях или приходить, когда уже все билеты в кино распроданы? У нас можно купить билеты онлайн!"
+//       />
+//       <meta property="og:title" content="Chiptaol - Онлайн-покупка билетов в кинотеатры Ташкента" />
+//       <meta property="og:locale" content="ru_RU" />
+//       <meta property="og:site_name" content="Chiptaol" />
+//       <meta
+//         property="og:description"
+//         content="Надоело стоять в кассах или приходить, когда уже все билеты распроданы? Для этого не обязательно ехать в кинотеатр, Вы можете купить билеты онлайн у нас."
+//       />
 
-      <link rel="icon" href="/logo.svg" />
-    </Head>
-  )
-}
+//       <link rel="icon" href="/logo.svg" />
+//     </Head>
+//   )
+// }
 
 export default NotFoundPage

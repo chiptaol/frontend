@@ -1,1 +1,1 @@
-export { SeanceFooter } from './ui'
+export { SeanceFooterWidget } from './ui'

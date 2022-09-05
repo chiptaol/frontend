@@ -1,1 +1,1 @@
-export { SeanceLegend } from './ui'
+export { SeanceLegendWidget } from './ui'

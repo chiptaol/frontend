@@ -1,18 +1,18 @@
 import { allSettled, fork, serialize, attach, createEvent, sample } from 'effector'
-import Head from 'next/head'
-import { useList, useUnit } from 'effector-react'
+import { useList } from 'effector-react'
 import Link from 'next/link'
 import type { GetServerSideProps, NextPage } from 'next'
 
 import { PremiereDayPicker, premiereDayPickerModel } from '~features/premiere-day-picker'
 import { premiere, PremiereCard, PremieresSlider } from '~entities/premiere'
 import { routesMap } from '~shared/routes'
-import { FooterInfo } from '~shared/ui'
+import { FooterInfo, Head } from '~shared/ui'
+import { META } from '~shared/config'
 
 const Home: NextPage = () => {
   return (
     <>
-      <Helmet />
+      <Head {...META.default} />
       <div className="w-full xl:flex xl:flex-col xl:h-full">
         <div className="flex flex-col space-y-5 w-full mb-10">
           <div className="max-w-7xl w-full mx-auto">
@@ -30,33 +30,6 @@ const Home: NextPage = () => {
         <FooterInfo className="hidden xl:block" />
       </div>
     </>
-  )
-}
-
-const Helmet = () => {
-  return (
-    <Head>
-      <title>Chiptaol - Онлайн-покупка билетов в кинотеатры Ташкента</title>
-      <meta
-        name="description"
-        content="Надоело стоять в очередях или приходить, когда уже все билеты в кино распроданы? У нас можно купить билеты онлайн!"
-      />
-      <meta property="og:title" content="Chiptaol - Онлайн-покупка билетов в кинотеатры Ташкента" />
-      <meta property="og:locale" content="ru_RU" />
-      <meta property="og:site_name" content="Chiptaol" />
-      <meta property="og:url" content="https://chiptaol.uz" />
-      <meta prefix="og: https://chiptaol.uz/ns#" />
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:image" content="https://chiptaol.uz/og-image.png" />
-      <meta property="og:image" content="https://chiptaol.uz/og-image.png" />
-      <meta property="og:image:width" content="1280" />
-      <meta property="og:image:height" content="730" />
-      <meta
-        property="og:description"
-        content="Надоело стоять в кассах или приходить, когда уже все билеты распроданы? Для этого не обязательно ехать в кинотеатр, Вы можете купить билеты онлайн у нас."
-      />
-      <link rel="icon" href="/logo.svg" />
-    </Head>
   )
 }
 

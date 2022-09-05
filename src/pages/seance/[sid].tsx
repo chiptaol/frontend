@@ -1,12 +1,11 @@
 import { allSettled, attach, createEvent, fork, sample, serialize } from 'effector'
 import { useMemo } from 'react'
 import { useStoreMap } from 'effector-react'
-import Head from 'next/head'
 import type { GetServerSideProps } from 'next'
 
-import { SeanceHeader } from '~widgets/seance-header'
-import { SeanceLegend } from '~widgets/seance-legend'
-import { SeanceFooter } from '~widgets/seance-footer'
+import { SeanceHeaderWidget } from '~widgets/seance-header'
+import { SeanceLegendWidget } from '~widgets/seance-legend'
+import { SeanceFooterWidget } from '~widgets/seance-footer'
 import { BookTicketWidget } from '~widgets/book-ticket'
 import { HallScheme, hallSchemeModel } from '~widgets/hall-scheme'
 import { selectSeatModel } from '~features/select-seat'
@@ -14,6 +13,8 @@ import { bookTicketModel } from '~features/book-ticket'
 import { HallZoom } from '~features/hall-zoom'
 import { cinema, CinemaScreen } from '~entities/cinema'
 import { seance } from '~entities/seance'
+import { Head } from '~shared/ui'
+import { META } from '~shared/config'
 import type { NextPageWithLayout } from '~shared/next'
 
 const SeancePage: NextPageWithLayout = () => {
@@ -21,12 +22,12 @@ const SeancePage: NextPageWithLayout = () => {
     <>
       <Helmet />
       <div className="max-w-7xl w-full h-full flex flex-col relative mx-auto">
-        <SeanceHeader />
-        <SeanceLegend />
+        <SeanceHeaderWidget />
+        <SeanceLegendWidget />
         <CinemaScreen />
         <HallZoom />
         <HallScheme />
-        <SeanceFooter />
+        <SeanceFooterWidget />
         <BookTicketWidget />
       </div>
     </>
@@ -46,23 +47,7 @@ const Helmet = () => {
     return 'Купить билет на фильм в Ташкенте.'
   }, [movieName, cinemaTitle])
 
-  return (
-    <Head>
-      <title>{title}</title>
-      <meta
-        name="description"
-        content="Надоело стоять в очередях или приходить, когда уже все билеты в кино распроданы? У нас можно купить билеты онлайн!"
-      />
-      <meta property="og:title" content={title} />
-      <meta property="og:locale" content="ru_RU" />
-      <meta property="og:site_name" content="Chiptaol" />
-      <meta
-        property="og:description"
-        content="Надоело стоять в кассах или приходить, когда уже все билеты распроданы? Для этого не обязательно ехать в кинотеатр, Вы можете купить билеты онлайн у нас."
-      />
-      <link rel="icon" href="/logo.svg" />
-    </Head>
-  )
+  return <Head title={title} {...META.seance} />
 }
 
 const pageStarted = createEvent<{ id: number }>()
