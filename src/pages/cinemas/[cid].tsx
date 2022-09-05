@@ -15,8 +15,8 @@ const CinemaPage: NextPageWithLayout = () => {
   return (
     <>
       <Helmet />
-      <div className="w-full h-full flex flex-col">
-        <main className="max-w-7xl w-full flex-grow flex flex-col space-y-6 mx-auto overflow-y-auto">
+      <div className="w-full h-full flex flex-col overflow-y-auto">
+        <main className="max-w-7xl w-full flex-grow flex flex-col space-y-6 mx-auto">
           <div className="flex w-full items-start space-x-8 px-5 pt-6 bg-header">
             <PageBackButton href={routesMap.cinemas} />
             <h1 className="text-xl leading-6 font-extrabold">Информация о кинотеатре</h1>
