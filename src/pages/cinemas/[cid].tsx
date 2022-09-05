@@ -17,70 +17,10 @@ const CinemaPage: NextPageWithLayout = () => {
       <Helmet />
       <div className="w-full h-full flex flex-col overflow-y-auto">
         <main className="max-w-7xl w-full flex-grow mx-auto">
-          <div className="flex w-full items-start space-x-8 px-5 pt-6 bg-header">
+          <div className="flex w-full items-start space-x-8 px-5 pt-6 bg-header mb-6">
             <PageBackButton href={routesMap.cinemas} />
             <h1 className="text-xl leading-6 font-extrabold">Информация о кинотеатре</h1>
           </div>
-          <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ex iusto ipsum repellendus
-            dolor hic officiis accusamus, repudiandae quia atque recusandae rem sint omnis, sequi
-            fugiat id cumque cupiditate incidunt aliquam?
-          </p>
-          <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ex iusto ipsum repellendus
-            dolor hic officiis accusamus, repudiandae quia atque recusandae rem sint omnis, sequi
-            fugiat id cumque cupiditate incidunt aliquam?
-          </p>
-          <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ex iusto ipsum repellendus
-            dolor hic officiis accusamus, repudiandae quia atque recusandae rem sint omnis, sequi
-            fugiat id cumque cupiditate incidunt aliquam?
-          </p>
-          <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ex iusto ipsum repellendus
-            dolor hic officiis accusamus, repudiandae quia atque recusandae rem sint omnis, sequi
-            fugiat id cumque cupiditate incidunt aliquam?
-          </p>
-          <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ex iusto ipsum repellendus
-            dolor hic officiis accusamus, repudiandae quia atque recusandae rem sint omnis, sequi
-            fugiat id cumque cupiditate incidunt aliquam?
-          </p>
-          <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ex iusto ipsum repellendus
-            dolor hic officiis accusamus, repudiandae quia atque recusandae rem sint omnis, sequi
-            fugiat id cumque cupiditate incidunt aliquam?
-          </p>
-          <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ex iusto ipsum repellendus
-            dolor hic officiis accusamus, repudiandae quia atque recusandae rem sint omnis, sequi
-            fugiat id cumque cupiditate incidunt aliquam?
-          </p>
-          <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ex iusto ipsum repellendus
-            dolor hic officiis accusamus, repudiandae quia atque recusandae rem sint omnis, sequi
-            fugiat id cumque cupiditate incidunt aliquam?
-          </p>
-          <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ex iusto ipsum repellendus
-            dolor hic officiis accusamus, repudiandae quia atque recusandae rem sint omnis, sequi
-            fugiat id cumque cupiditate incidunt aliquam?
-          </p>
-          <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ex iusto ipsum repellendus
-            dolor hic officiis accusamus, repudiandae quia atque recusandae rem sint omnis, sequi
-            fugiat id cumque cupiditate incidunt aliquam?
-          </p>
-          <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ex iusto ipsum repellendus
-            dolor hic officiis accusamus, repudiandae quia atque recusandae rem sint omnis, sequi
-            fugiat id cumque cupiditate incidunt aliquam?
-          </p>
-          <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ex iusto ipsum repellendus
-            dolor hic officiis accusamus, repudiandae quia atque recusandae rem sint omnis, sequi
-            fugiat id cumque cupiditate incidunt aliquam?
-          </p>
           <CinemaOverview />
           <CinemaSeancesWidget />
         </main>

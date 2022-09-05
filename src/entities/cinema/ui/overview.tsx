@@ -16,7 +16,7 @@ export const CinemaOverview = () => {
   if (!cinema) return null
 
   return (
-    <div className="w-full flex flex-col space-y-5">
+    <div className="w-full flex flex-col space-y-5 mb-6">
       <div className="flex flex-col space-y-6 px-4">
         <div className="w-32 h-32 rounded-xl overflow-hidden bg-yellow-200">
           {!!cinema.logo?.path && (
