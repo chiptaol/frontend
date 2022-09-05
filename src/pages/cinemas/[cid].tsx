@@ -21,46 +21,6 @@ const CinemaPage: NextPageWithLayout = () => {
             <PageBackButton href={routesMap.cinemas} />
             <h1 className="text-xl leading-6 font-extrabold">Информация о кинотеатре</h1>
           </div>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis dicta hic corporis
-            commodi ipsam maiores reprehenderit veritatis ea error a tenetur, voluptatem accusantium
-            architecto laudantium repellendus! Dolor in magnam harum.
-          </p>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis dicta hic corporis
-            commodi ipsam maiores reprehenderit veritatis ea error a tenetur, voluptatem accusantium
-            architecto laudantium repellendus! Dolor in magnam harum.
-          </p>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis dicta hic corporis
-            commodi ipsam maiores reprehenderit veritatis ea error a tenetur, voluptatem accusantium
-            architecto laudantium repellendus! Dolor in magnam harum.
-          </p>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis dicta hic corporis
-            commodi ipsam maiores reprehenderit veritatis ea error a tenetur, voluptatem accusantium
-            architecto laudantium repellendus! Dolor in magnam harum.
-          </p>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis dicta hic corporis
-            commodi ipsam maiores reprehenderit veritatis ea error a tenetur, voluptatem accusantium
-            architecto laudantium repellendus! Dolor in magnam harum.
-          </p>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis dicta hic corporis
-            commodi ipsam maiores reprehenderit veritatis ea error a tenetur, voluptatem accusantium
-            architecto laudantium repellendus! Dolor in magnam harum.
-          </p>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis dicta hic corporis
-            commodi ipsam maiores reprehenderit veritatis ea error a tenetur, voluptatem accusantium
-            architecto laudantium repellendus! Dolor in magnam harum.
-          </p>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis dicta hic corporis
-            commodi ipsam maiores reprehenderit veritatis ea error a tenetur, voluptatem accusantium
-            architecto laudantium repellendus! Dolor in magnam harum.
-          </p>
           <CinemaOverview />
           <CinemaSeancesWidget />
         </main>
