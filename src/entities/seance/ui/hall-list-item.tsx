@@ -32,7 +32,7 @@ export const SeanceHallListItem = (props: Props) => {
           {props.seance.is_vip ? 'VIP Зал' : 'Стандарт'}
         </p>
       </SeanceLinkWrapper>
-      <div className="flex gap-x-3 gap-y-2 w-full">
+      <div className="flex gap-x-3 gap-y-2 w-full flex-wrap">
         {props.seance.seances.map((seance) => (
           <SeanceLinkItem key={seance.id} seance={seance} />
         ))}
