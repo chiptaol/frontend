@@ -24,7 +24,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-input-mask": "^2.0.4",
-    "sharp": "^0.31.0",
+    "sharp": "^0.31.1",
     "typed-contracts": "^3.0.0",
     "yup": "^0.32.11"
   },

@@ -21,6 +21,7 @@ export const Head = (props: Props) => {
       <meta property="og:image" content="https://chiptaol.uz/og-image.png" />
       <meta property="og:image:width" content="1280" />
       <meta property="og:image:height" content="730" />
+      <meta name="google-site-verification" content="LF1qrfqLMTy7QT1Vqi_eV3htIyfrct4FU0vD7tAIYo8" />
       <meta property="og:description" content={props.ogDescription ?? props.description} />
       <link rel="icon" href="/logo.svg" />
     </NextHead>
